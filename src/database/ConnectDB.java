@@ -28,4 +28,10 @@ public class ConnectDB {
             System.out.println("Kết nối thành công");
         }else System.out.println("Kết nối that bai");
     }
+
+    public static Connection openConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 }

@@ -4,6 +4,8 @@
  */
 package view;
 
+import dao.DocGiaDao;
+import model.DocGiaModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
@@ -45,7 +47,7 @@ public class ThemDocGiaView extends javax.swing.JFrame {
             tblModel.setRowCount(0);
             for (DocGiaModel r : list) {
                 tblModel.addRow(new Object[]{
-                    r.getMadg(), r.getTendg(), r.getSodt(), r.getEmail(), r.getNgaysinh(), r.getCancuoccd(), r.getDangmuon(), r.getTienphat()
+                    r.getTendg(), r.getSodt(), r.getEmail(), r.getNgaysinh(), r.getCancuoccd(), r.getDangmuon(), r.getTienphat()
                 });
             }
             tblModel.fireTableDataChanged();
@@ -64,8 +66,6 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtMadg = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         txtTendg = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtSodt = new javax.swing.JTextField();
@@ -75,11 +75,11 @@ public class ThemDocGiaView extends javax.swing.JFrame {
         txtCC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnInsert = new javax.swing.JButton();
-        jDateChooser = new com.toedter.calendar.JDateChooser();
         lblBirth = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -87,26 +87,22 @@ public class ThemDocGiaView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 140, 30));
-
-        jLabel1.setText("Mã độc giả");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
         getContentPane().add(txtTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 140, 30));
 
         jLabel2.setText("Tên độc giả");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
-        getContentPane().add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 140, 30));
+        getContentPane().add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 140, 30));
 
         jLabel3.setText("Số điện thoại");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 150, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 30));
 
         lblEmail.setText("Email");
-        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
-        getContentPane().add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 150, 30));
+        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
+        getContentPane().add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 150, 30));
 
         jLabel4.setText("Căn cước");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, -1));
 
         btnInsert.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnInsert.setText("Thêm độc giả");
@@ -116,10 +112,9 @@ public class ThemDocGiaView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 120, 30));
-        getContentPane().add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 150, 30));
 
         lblBirth.setText("Ngày sinh");
-        getContentPane().add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        getContentPane().add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, -1, -1));
 
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -147,11 +142,17 @@ public class ThemDocGiaView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Thêm độc giả mới");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 170, 30));
+        getContentPane().add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 140, 30));
 
         jMenu1.setText("Hệ thống");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem1.setText("Đăng xuất");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Thoát");
@@ -165,16 +166,16 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-            if (txtMadg.getText().trim().isEmpty()
-                || txtTendg.getText().trim().isEmpty()
+            if (txtTendg.getText().trim().isEmpty()
                 || txtSodt.getText().trim().isEmpty()
                 || txtEmail.getText().trim().isEmpty()
-                || txtCC.getText().trim().isEmpty()) {
+                || txtCC.getText().trim().isEmpty()
+                || jDateChooser.getDate()==null) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         try {
             DocGiaModel dg = new DocGiaModel();
-            dg.setMadg(txtMadg.getText());
+            dg.setMK(txtEmail.getText());
             dg.setTendg(txtTendg.getText());
             dg.setSodt(txtSodt.getText());
             dg.setEmail(txtEmail.getText());
@@ -194,9 +195,10 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        AdminView adminview = new AdminView();
-        dispose();
-        adminview.setVisible(true);
+//        AdminView adminview = new AdminView(0);
+//        dispose();
+//        adminview.setVisible(true);
+    System.exit(0);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void lblClockAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblClockAncestorAdded
@@ -206,6 +208,10 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     private void lblClockAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblClockAncestorRemoved
         // TODO add your handling code here:
     }//GEN-LAST:event_lblClockAncestorRemoved
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +253,6 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnInsert;
     private com.toedter.calendar.JDateChooser jDateChooser;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -261,7 +266,6 @@ public class ThemDocGiaView extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JTextField txtCC;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtMadg;
     private javax.swing.JTextField txtSodt;
     private javax.swing.JTextField txtTendg;
     // End of variables declaration//GEN-END:variables

@@ -1,10 +1,11 @@
 package view;
 
 public class AdminView extends javax.swing.JFrame {
-
-    public AdminView() {
+    private int MAQTV;
+    public AdminView(int MAQTV) {
         initComponents();
        // setLocationRelativeTo(null);
+       this.MAQTV=MAQTV;
         setSize(700,600);
         initClock();        
     }
@@ -19,15 +20,17 @@ public class AdminView extends javax.swing.JFrame {
     private void initComponents() {
 
         btnInsert = new javax.swing.JButton();
-        btnQLDG1 = new javax.swing.JButton();
+        btnThemsach = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
         lblQLDG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSuasach = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        btnMuonsach = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnSystem = new javax.swing.JMenu();
         btnLogout = new javax.swing.JMenuItem();
@@ -43,16 +46,16 @@ public class AdminView extends javax.swing.JFrame {
                 btnInsertActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 170, 40));
+        getContentPane().add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 170, 40));
 
-        btnQLDG1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnQLDG1.setText("Thêm sách");
-        btnQLDG1.addActionListener(new java.awt.event.ActionListener() {
+        btnThemsach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThemsach.setText("Thêm sách");
+        btnThemsach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLDG1ActionPerformed(evt);
+                btnThemsachActionPerformed(evt);
             }
         });
-        getContentPane().add(btnQLDG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 170, 40));
+        getContentPane().add(btnThemsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 170, 40));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -76,31 +79,54 @@ public class AdminView extends javax.swing.JFrame {
                 btnEditActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 170, 40));
+        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 170, 40));
 
         lblQLDG.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblQLDG.setText("Quản lý độc giả");
-        getContentPane().add(lblQLDG, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+        getContentPane().add(lblQLDG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Quản lý sách");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Chỉnh sửa sách");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 170, 40));
+        btnSuasach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSuasach.setText("Chỉnh sửa sách");
+        btnSuasach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuasachActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSuasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 170, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Quản lý mượn trả");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Danh sách mượn trả");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 283, 170, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 170, 40));
 
         jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jToggleButton1.setText("Thống kê tiền phạt");
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 170, 40));
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 170, 30));
+
+        btnMuonsach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMuonsach.setText("Thêm sách mượn");
+        btnMuonsach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMuonsachActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMuonsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 170, 30));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Trả sách");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 170, 30));
 
         btnSystem.setText("Hệ thống");
         btnSystem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -134,14 +160,17 @@ public class AdminView extends javax.swing.JFrame {
       insert.setVisible(true);
     }//GEN-LAST:event_btnInsertActionPerformed
 
-    private void btnQLDG1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLDG1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnQLDG1ActionPerformed
+    private void btnThemsachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemsachActionPerformed
+        Book.ThemSachView themsach = new Book.ThemSachView();
+        dispose();
+        themsach.setVisible(true);
+    }//GEN-LAST:event_btnThemsachActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         LoginView login = new LoginView();
         dispose();
         login.setVisible(true);
+        
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -161,6 +190,22 @@ public class AdminView extends javax.swing.JFrame {
         dispose();
         sua.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnSuasachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuasachActionPerformed
+        Book.SuaSachView suasach = new Book.SuaSachView();
+        dispose();
+        suasach.setVisible(true);
+    }//GEN-LAST:event_btnSuasachActionPerformed
+
+    private void btnMuonsachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuonsachActionPerformed
+        MuonsachView muonsach = new MuonsachView();
+        dispose();
+        muonsach.setVisible(true);
+    }//GEN-LAST:event_btnMuonsachActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +237,7 @@ public class AdminView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminView().setVisible(true);
+                new AdminView(0).setVisible(true);
             }
         });
     }
@@ -201,8 +246,10 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInsert;
     private javax.swing.JMenuItem btnLogout;
-    private javax.swing.JButton btnQLDG1;
+    private javax.swing.JButton btnMuonsach;
+    private javax.swing.JButton btnSuasach;
     private javax.swing.JMenu btnSystem;
+    private javax.swing.JButton btnThemsach;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

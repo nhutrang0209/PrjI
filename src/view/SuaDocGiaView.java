@@ -4,6 +4,8 @@
  */
 package view;
 
+import dao.DocGiaDao;
+import model.DocGiaModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
@@ -35,7 +38,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         initComponents();
         initTable();
         loadDataToTable();
-        setSize(700,600);
+        setSize(1000,660);
         initClock();
     }
     
@@ -46,10 +49,17 @@ public class SuaDocGiaView extends javax.swing.JFrame {
 
     private void initTable() {
         tblModel = new DefaultTableModel();
-        tblModel.setColumnIdentifiers(new String[]{"Mã độc giả", "Tên độc giả", "Số điện thoại", "Email", "Ngày sinh", "CCCD", "Số sách đang mượn", "Tiền phạt"});
+        tblModel.setColumnIdentifiers(new String[]{"ID", "Tên độc giả", "Số điện thoại", "Email", "Ngày sinh", "CCCD", "Số sách đang mượn", "Tiền phạt"});
         tbldg.setModel(tblModel);
-        
         tbldg.setRowSelectionAllowed(true);
+        tbldg.setAutoCreateRowSorter(true);
+        tbldg.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbldg.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tbldg.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tbldg.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tbldg.getColumnModel().getColumn(3).setPreferredWidth(180);
+        tbldg.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tbldg.getColumnModel().getColumn(5).setPreferredWidth(100);
     ListSelectionModel rowSelectionModel = tbldg.getSelectionModel();
     rowSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -60,10 +70,12 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         int[] selectedRow = tbldg.getSelectedRows();
         if(selectedRow.length>0){
         selectedMadg=(String)tbldg.getValueAt(selectedRow[0], 0);
+        
+        txtMadg.setText(selectedMadg);
         //Change value Tendocgia
         txtTendg.setText((String)tbldg.getValueAt(selectedRow[0],1));
                 //Change value Tendocgia
-         txtSodt.setText((String)tbldg.getValueAt(selectedRow[0],2));
+        txtSodt.setText((String)tbldg.getValueAt(selectedRow[0],2));
                         //Change value Tendocgia
         txtEmail.setText((String)tbldg.getValueAt(selectedRow[0],3));
                 //Change value birthday
@@ -120,9 +132,11 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtCC = new javax.swing.JTextField();
         lblBirth = new javax.swing.JLabel();
-        dateField = new com.toedter.calendar.JDateChooser();
         lblSodt = new javax.swing.JLabel();
         txtSodt = new javax.swing.JTextField();
+        dateField = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        txtMadg = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -138,7 +152,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 btnChangeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
+        getContentPane().add(btnChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, -1, -1));
 
         tbldg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,7 +167,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbldg);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 660, 210));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 210));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 100, 60));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
@@ -169,11 +183,11 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Chỉnh sửa độc giả");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        jLabel2.setText("Chỉnh sửa thông tin độc giả");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
         btnBack.setText("< Quay lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -181,32 +195,40 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 490, -1, -1));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 490, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTendg.setText("Tên độc giả");
-        jPanel2.add(lblTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-        jPanel2.add(txtTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, 30));
+        jPanel2.add(lblTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        txtTendg.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jPanel2.add(txtTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 210, 30));
 
         lblEmail.setText("Email");
-        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 150, 30));
+        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 210, 30));
 
         jLabel1.setText("Căn cước");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 60, -1));
-        jPanel2.add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 150, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 60, -1));
+        jPanel2.add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 210, 30));
 
         lblBirth.setText("Ngày sinh");
-        jPanel2.add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-        jPanel2.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 150, 30));
+        jPanel2.add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         lblSodt.setText("Số điện thoại");
-        jPanel2.add(lblSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-        jPanel2.add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 150, 30));
+        jPanel2.add(lblSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        jPanel2.add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 210, 30));
+        jPanel2.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 210, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 280, 220));
+        jLabel3.setText("Mã độc giả");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        txtMadg.setEditable(false);
+        jPanel2.add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 210, 30));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 360, 280));
 
         btnDelete.setText("Xóa độc giả");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +236,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, -1, -1));
 
         jMenu1.setText("Hệ thống");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -283,6 +305,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 DocGiaDao dao = new DocGiaDao();
                 DocGiaModel dg = dao.findById(id);
                 if (dg != null) {
+                    txtMadg.setText(dg.getMadg());
                     txtTendg.setText(dg.getTendg());
                     txtSodt.setText(dg.getSodt());
                     txtEmail.setText(dg.getEmail());
@@ -304,9 +327,10 @@ public class SuaDocGiaView extends javax.swing.JFrame {
     }//GEN-LAST:event_lblClockAncestorRemoved
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        AdminView admin = new AdminView();
-        dispose();
-        admin.setVisible(true);
+//        AdminView admin = new AdminView(0);
+//        dispose();
+//        admin.setVisible(true);
+System.exit(0);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -378,6 +402,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -391,6 +416,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
     private javax.swing.JTable tbldg;
     private javax.swing.JTextField txtCC;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtMadg;
     private javax.swing.JTextField txtSodt;
     private javax.swing.JTextField txtTendg;
     // End of variables declaration//GEN-END:variables

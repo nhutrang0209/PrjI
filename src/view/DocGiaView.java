@@ -22,7 +22,7 @@ public class DocGiaView extends javax.swing.JFrame {
     private ResultSet rs;
     public DocGiaView(String email) {
         initComponents();
-        setSize(700,600);
+        setSize(1000,660);
         initClock();
         this.email=email;
     }
@@ -42,7 +42,6 @@ public class DocGiaView extends javax.swing.JFrame {
 
         btnSearchBook = new javax.swing.JButton();
         btnInfor = new javax.swing.JButton();
-        btnFullBook = new javax.swing.JButton();
         btnRule = new javax.swing.JButton();
         lblGreeting = new javax.swing.JLabel();
         btnChangePass = new javax.swing.JButton();
@@ -63,7 +62,7 @@ public class DocGiaView extends javax.swing.JFrame {
                 btnSearchBookActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSearchBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 130, 40));
+        getContentPane().add(btnSearchBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 170, 50));
 
         btnInfor.setText("Thông tin độc giả");
         btnInfor.addActionListener(new java.awt.event.ActionListener() {
@@ -71,15 +70,7 @@ public class DocGiaView extends javax.swing.JFrame {
                 btnInforActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 130, 40));
-
-        btnFullBook.setText("Thông tin sách");
-        btnFullBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFullBookActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnFullBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 130, 40));
+        getContentPane().add(btnInfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 170, 50));
 
         btnRule.setText("Quy định");
         btnRule.addActionListener(new java.awt.event.ActionListener() {
@@ -87,11 +78,11 @@ public class DocGiaView extends javax.swing.JFrame {
                 btnRuleActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRule, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 130, 40));
+        getContentPane().add(btnRule, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 170, 50));
 
         lblGreeting.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblGreeting.setText("Xin chào bạn đọc, bạn cần gì?");
-        getContentPane().add(lblGreeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 360, 50));
+        getContentPane().add(lblGreeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 360, 50));
 
         btnChangePass.setText("Đổi mật khẩu");
         btnChangePass.addActionListener(new java.awt.event.ActionListener() {
@@ -99,10 +90,10 @@ public class DocGiaView extends javax.swing.JFrame {
                 btnChangePassActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 130, 40));
+        getContentPane().add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 170, 50));
 
-        jButton1.setText("Mượn sách");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 130, 40));
+        jButton1.setText("Danh sách mượn của tôi");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 170, 50));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -117,10 +108,10 @@ public class DocGiaView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -20, -1, -1));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, -1, -1));
 
         jMenu1.setText("Hệ thống");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -170,13 +161,12 @@ public class DocGiaView extends javax.swing.JFrame {
             rs.next();
             System.out.println("Ten la:<"+rs+">");
             String maDocGia=rs.getString(1);
+            System.out.println(maDocGia);
             String name=rs.getString(2);
             String sdt=rs.getString(3);
             String email=rs.getString(4);
-            String ngaysinh=rs.getString(5);
-            String cccd=rs.getString(6);
-            int muon=rs.getInt(7);
-            int tra=rs.getInt(8);
+            String ngaysinh=rs.getString(6);
+            String cccd=rs.getString(7);
             String message="Mã độc giả: "+maDocGia+"\n"+ 
                             "Họ và tên: "+name+"\n"+
                             "Ngày sinh: " + ngaysinh +"\n"+
@@ -190,19 +180,13 @@ public class DocGiaView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInforActionPerformed
 
     private void btnSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBookActionPerformed
-        Book.FRT timkiem = new Book.FRT(email);
+        Book.TimKiemView timkiem = new Book.TimKiemView(email);
         dispose();
         timkiem.setVisible(true);
     }//GEN-LAST:event_btnSearchBookActionPerformed
 
-    private void btnFullBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFullBookActionPerformed
-        Book.FrSach sach = new Book.FrSach(email);
-        dispose();
-        sach.setVisible(true);
-    }//GEN-LAST:event_btnFullBookActionPerformed
-
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
-        ChangPass changepass = new ChangPass(email);
+        ChangPassView changepass = new ChangPassView(email);
         dispose();
         changepass.setVisible(true);
     }//GEN-LAST:event_btnChangePassActionPerformed
@@ -211,8 +195,7 @@ public class DocGiaView extends javax.swing.JFrame {
         
         String message1 = "1. Chỉnh sửa thông tin cá nhân: Bạn đọc vui lòng đến trưc tiếp đến thư viện \n" +
                            "2. Mượn sách:" + "\n" +
-                            "  Số lượng mượn tối đa: 3 quyển/ lần mượn" + "\n" +
-                            "  Thời gian mượn tối đa: 14 ngày" + "\n" +
+                            "  Thời gian mượn tối đa: 14 ngày/1 quyển" + "\n" +
                             "  Tiền phạt quá hạn mượn: 1000đ/1 ngày/1 quyển" + "\n" +
                             "  Nếu bạn đọc đang mượn quá 10 quyển thì không được mượn nữa \n"+
                             "3. Trả sách: \n" +
@@ -271,7 +254,6 @@ public class DocGiaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangePass;
     private javax.swing.JMenuItem btnExit;
-    private javax.swing.JButton btnFullBook;
     private javax.swing.JButton btnInfor;
     private javax.swing.JMenuItem btnLogout;
     private javax.swing.JButton btnRule;

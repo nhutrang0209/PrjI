@@ -24,7 +24,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
-        setSize(700,600);
+        setSize(1000,660);
         initClock();
     }
 
@@ -64,21 +64,21 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hust.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 90, 130));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 90, 130));
 
         txtMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMailActionPerformed(evt);
             }
         });
-        getContentPane().add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 290, 40));
+        getContentPane().add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 290, 40));
 
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
             }
         });
-        getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 290, 40));
+        getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 290, 40));
 
         adminLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         adminLoginButton.setText("Đăng nhập là quản trị viên");
@@ -87,7 +87,7 @@ public class LoginView extends javax.swing.JFrame {
                 adminLoginButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(adminLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, 30));
+        getContentPane().add(adminLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, 30));
 
         userLoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         userLoginButton.setText("Đăng nhập là độc giả");
@@ -96,7 +96,7 @@ public class LoginView extends javax.swing.JFrame {
                 userLoginButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(userLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 210, 30));
+        getContentPane().add(userLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 210, 30));
 
         btnQuenmk.setText("Quên mật khẩu");
         btnQuenmk.addActionListener(new java.awt.event.ActionListener() {
@@ -104,15 +104,15 @@ public class LoginView extends javax.swing.JFrame {
                 btnQuenmkActionPerformed(evt);
             }
         });
-        getContentPane().add(btnQuenmk, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 120, 30));
+        getContentPane().add(btnQuenmk, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 120, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Email");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("Mật khẩu");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -127,15 +127,15 @@ public class LoginView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Đại học Bách Khoa Hà Nội");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 23)); // NOI18N
         jLabel6.setText("Thư viện Tạ Quang Bửu");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
@@ -178,7 +178,7 @@ public class LoginView extends javax.swing.JFrame {
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginButtonActionPerformed
         conn = cn.getConnection();
         try {
-            String sql = "SELECT*FROM dangnhap WHERE EMAIL=? AND MATKHAU=? AND PHANLOAI='QTV'";
+            String sql = "SELECT*FROM QTV WHERE EMAIL=? AND MK=?";
             PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
             ps.setString(1, txtMail.getText());
             ps.setString(2, txtPass.getText());
@@ -188,7 +188,8 @@ public class LoginView extends javax.swing.JFrame {
             } else if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
                 dispose();
-                AdminView am = new AdminView();
+                int MAQTV=Integer.parseInt(rs.getString(1)) ;
+                AdminView am = new AdminView(MAQTV);
                 am.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng");
@@ -200,7 +201,7 @@ public class LoginView extends javax.swing.JFrame {
     private void userLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginButtonActionPerformed
         conn = cn.getConnection();
         try {
-            String sql = "SELECT*FROM dangnhap WHERE EMAIL=? AND MATKHAU=? AND PHANLOAI='Độc giả'";
+            String sql = "SELECT*FROM docgia WHERE EMAIL=? AND MK=?";
             PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
             ps.setString(1, txtMail.getText());
             ps.setString(2, txtPass.getText());

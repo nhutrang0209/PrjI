@@ -4,27 +4,27 @@ import java.util.Date;
 
 public class DocGiaModel {
 
-    private String madg;
+    private int madg;
     private String tendg;
     private String sodt;
     private String email;
     private String mk;
     private Date ngaysinh;
-    private String cancuoccd;
+    private String cccd;
     private String dangmuon;
     private String tienphat;
 
     public DocGiaModel() {
     }
 
-    public DocGiaModel(String madg, String tendg, String sodt, String email,String mk, Date ngaysinh, String cancuoccd) {
+    public DocGiaModel(int madg, String tendg, String sodt, String email,String mk, Date ngaysinh, String cancuoccd) {
         this.madg = madg;
         this.tendg = tendg;
         this.sodt = sodt;
         this.email = email;
         this.mk=mk;
         this.ngaysinh = ngaysinh;
-        this.cancuoccd = cancuoccd;
+        this.cccd = cccd;
 //        this.dangmuon = dangmuon;
 //        this.tienphat = tienphat;
     }
@@ -37,11 +37,11 @@ public class DocGiaModel {
         this.mk = mk;
     }
 
-        public String getMadg() {
+        public int getMadg() {
         return madg;
     }
 
-    public void setMadg(String madg) {
+    public void setMadg(int madg) {
         this.madg = madg;
     }
 
@@ -78,11 +78,11 @@ public class DocGiaModel {
     }
 
     public String getCancuoccd() {
-        return cancuoccd;
+        return cccd;
     }
 
     public void setCancuoccd(String cancuoccd) {
-        this.cancuoccd = cancuoccd;
+        this.cccd = cancuoccd;
     }
 
     public String getDangmuon() {
@@ -100,6 +100,7 @@ public class DocGiaModel {
     public void setTienphat(String tienphat) {
         this.tienphat = tienphat;
     }
+
     public void printDg(){
         System.out.println("MADG: "+getMadg()+"\n"+
                            "Ten: "+getTendg()+"\n"+

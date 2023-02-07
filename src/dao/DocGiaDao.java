@@ -12,7 +12,7 @@ public class DocGiaDao {
 
     ConnectDB cn = new ConnectDB();
     //private ResultSet rs;
-    public List<DocGiaModel> list;
+
 
     public boolean insert(DocGiaModel dg) throws Exception {
 
@@ -38,7 +38,7 @@ public class DocGiaDao {
        
                 Connection conn = (Connection) cn.getConnection(); 
                 PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(6,dg.getMadg());
+            pstm.setInt(6,dg.getMadg());
             pstm.setString(1, dg.getTendg());
             pstm.setString(2, dg.getSodt());
             pstm.setString(3, dg.getEmail());
@@ -57,18 +57,18 @@ public class DocGiaDao {
         try (
                 Connection conn = (Connection) cn.getConnection();
                 PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);) {
-            pstm.setString(1, dg.getMadg());
+            pstm.setInt(1, dg.getMadg());
             return pstm.executeUpdate() > 0;
 
         }
     }
 
-    public DocGiaModel findById(String madg) throws Exception {
+    public DocGiaModel findById(int madg) throws Exception {
 
-        String sql = "SELECT * FROM docgia WHERE MADOCGIA = ? ";
+        String sql = "SELECT * FROM docgia WHERE MADG = ? ";
         try (
                 Connection conn = (Connection) cn.getConnection(); PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);) {
-            pstm.setString(1, madg);
+            pstm.setInt(1, madg);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
                     DocGiaModel dg = createDocGia(rs);
@@ -79,10 +79,21 @@ public class DocGiaDao {
 
         }
     }
+    public static String getNameByMadg(int madg) throws SQLException{
+        String sql="SELECT TENDG FROM docgia WHERE MADG=?";
+        ConnectDB cn = new ConnectDB();
+        Connection conn = (Connection) cn.getConnection();
+        PreparedStatement ps= (PreparedStatement) conn.prepareStatement(sql); 
+        ps.setInt(1, madg);
+        ResultSet rs=ps.executeQuery();
+        rs.next();
+        String tendg=rs.getString(1);
+        return tendg;
+    }
 
-    private DocGiaModel createDocGia(final ResultSet rs) throws SQLException {
+    public static DocGiaModel createDocGia(final ResultSet rs) throws SQLException {
         DocGiaModel dg = new DocGiaModel();
-        dg.setMadg(rs.getString("MADG"));
+        dg.setMadg(rs.getInt("MADG"));
         dg.setTendg(rs.getString("TENDG"));
         dg.setSodt(rs.getString("SODT"));
         dg.setEmail(rs.getString("EMAIL"));
@@ -107,5 +118,21 @@ public class DocGiaDao {
 
         }
 
+    }
+    
+    public static DocGiaModel findByMadg(int madg){
+        String sql=     "SELECT * FROM docgia WHERE MADG="+madg;
+        System.out.println(sql);
+        try {
+                ConnectDB cn=new ConnectDB();
+                Connection conn=(Connection) cn.getConnection();
+                PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+                ResultSet rs=ps.executeQuery();
+                rs.next();
+                DocGiaModel dg=createDocGia(rs);
+                return dg;
+        }catch(Exception e){
+            return null;}
+        
     }
 }

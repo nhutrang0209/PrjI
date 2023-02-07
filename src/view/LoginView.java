@@ -5,23 +5,24 @@
 package view;
 
 
+import database.Clock;
+import view.qtv.AdminView;
+import view.docgia.DocGiaView;
+import dao.DocGiaDao;
+import dao.LoginDao;
 import database.ConnectDB;
 import java.sql.Connection;
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.DocGiaModel;
 
 /**
  *
  * @author 84899
  */
 public class LoginView extends javax.swing.JFrame {
-    ConnectDB cn = new ConnectDB();
-    Connection conn;
-    private ResultSet rs;
-    /**
-     * Creates new form LoginVie
-     */
+
     public LoginView() {
         initComponents();
         setSize(1000,660);
@@ -176,48 +177,38 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginButtonActionPerformed
-        conn = cn.getConnection();
-        try {
-            String sql = "SELECT*FROM QTV WHERE EMAIL=? AND MK=?";
-            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
-            ps.setString(1, txtMail.getText());
-            ps.setString(2, txtPass.getText());
-            rs = ps.executeQuery();
-            if (txtMail.getText().equals("") || txtPass.getText().equals("")) {
+        String email = txtMail.getText();
+        String password =txtPass.getText();
+        
+            if (email.equals("") || password.equals("")) {
                 JOptionPane.showMessageDialog(this, "Email và mật khẩu không được để trống");
-            } else if (rs.next()) {
+            
+            } else if(LoginDao.findAdminByEmailAndPassword(email,password)!=0){
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
                 dispose();
-                int MAQTV=Integer.parseInt(rs.getString(1)) ;
-                AdminView am = new AdminView(MAQTV);
+                AdminView am = new AdminView(LoginDao.findAdminByEmailAndPassword(email,password));
                 am.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng");
             }
-        } catch (Exception e) {
-        }
+            
+            else JOptionPane.showMessageDialog(this, "Đăng nhập thành công \n "
+                                                                + "Kiểm tra lại email và mật khẩu");
+
+
     }//GEN-LAST:event_adminLoginButtonActionPerformed
 
     private void userLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginButtonActionPerformed
-        conn = cn.getConnection();
-        try {
-            String sql = "SELECT*FROM docgia WHERE EMAIL=? AND MK=?";
-            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
-            ps.setString(1, txtMail.getText());
-            ps.setString(2, txtPass.getText());
-            rs = ps.executeQuery();
-            if (txtMail.getText().equals("") || txtPass.getText().equals("")) {
+        String email = txtMail.getText();
+        String password =txtPass.getText();
+            if (email.equals("") || password.equals("")) {
                 JOptionPane.showMessageDialog(this, "Email và mật khẩu không được để trống");
-            } else if (rs.next()) {
+            } else if(LoginDao.findUserByEmailAndPassword(email,password)!=0){
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
                 dispose();
-                DocGiaView dg = new DocGiaView(txtMail.getText());
-                dg.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng");
+                DocGiaView dgv = new DocGiaView(LoginDao.findUserByEmailAndPassword(email,password));
+                dgv.setVisible(true);
             }
-        } catch (Exception e) {
-        }
+            else System.out.println("Dang nhap khong thanh cong");
+    
     }//GEN-LAST:event_userLoginButtonActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -233,24 +224,13 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnQuenmkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuenmkActionPerformed
-        String email;
-        email  = JOptionPane.showInputDialog("Nhập email của bạn");
-        conn = cn.getConnection();
-        try {
-            String sql = "SELECT email FROM dangnhap WHERE EMAIL=?";
-            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
-            ps.setString(1, email);
-            rs = ps.executeQuery();
-            if (email.equals("")) {
-                JOptionPane.showMessageDialog(this, "Email không được để trống");
-            } else if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Mật khẩu mới được gửi về " + email );
-                //dispose();            
-            } else {
-                JOptionPane.showMessageDialog(this, "Email không đúng");
-            }
-        } catch (Exception e) {
+        String email = JOptionPane.showInputDialog("Nhập email của bạn");
+        if (LoginDao.findUserByEmail(email)!=0){
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới được gửi về "+email);
         }
+        else JOptionPane.showMessageDialog(this, "Email không tồn tại");
+
+        
         
 	//JOptionPane.showMessageDialog(rootPane,"Mật khẩu mới đã được gửi về mail của bạn");
     }//GEN-LAST:event_btnQuenmkActionPerformed

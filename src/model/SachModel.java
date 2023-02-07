@@ -16,7 +16,7 @@ public class SachModel {
     private String soluong;
     private String soluongconlai;
     private String mavitri;
-
+    private int giabia;
     public SachModel() {
     }
 
@@ -95,6 +95,20 @@ public class SachModel {
 
     public void setMavitri(String mavitri) {
         this.mavitri = mavitri;
+    }
+
+    /**
+     * @return the giabia
+     */
+    public int getGiabia() {
+        return giabia;
+    }
+
+    /**
+     * @param giabia the giabia to set
+     */
+    public void setGiabia(int giabia) {
+        this.giabia = giabia;
     }
  
     

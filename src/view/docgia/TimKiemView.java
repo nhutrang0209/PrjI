@@ -4,6 +4,7 @@
  */
 package view.docgia;
 
+import dao.DocGiaDao;
 import dao.SachDao;
 import database.ConnectDB;
 import java.sql.Connection;
@@ -16,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.SachModel;
 import database.Clock;
+import model.DocGiaModel;
 
 /**
  *
@@ -23,7 +25,9 @@ import database.Clock;
  */
 public class TimKiemView extends javax.swing.JFrame {
     private DefaultTableModel tblModel;
-    public TimKiemView() {
+    DocGiaModel dg;
+    public TimKiemView(int madg) {
+        this.dg = DocGiaDao.findByMadg(madg);
         initComponents();
         initTableModel();
         setSize(1000,660);
@@ -41,6 +45,8 @@ public class TimKiemView extends javax.swing.JFrame {
         tblModel.setColumnIdentifiers(columnNames);
         tbSach.setAutoCreateRowSorter(true);
         tbSach.setModel(tblModel);
+        List<SachModel> list=SachDao.findAll();
+        updateTable(list);
         tbSach.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbSach.getColumnModel().getColumn(0).setPreferredWidth(70);
         tbSach.getColumnModel().getColumn(1).setPreferredWidth(250);
@@ -73,6 +79,7 @@ public class TimKiemView extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnShowall = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
+        lblCompulsory = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnSystem = new javax.swing.JMenu();
@@ -82,21 +89,23 @@ public class TimKiemView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnTimkiemtheoten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/timkiem.png"))); // NOI18N
         btnTimkiemtheoten.setText("Tìm kiếm theo tên");
         btnTimkiemtheoten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimkiemtheotenActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 150, 30));
+        getContentPane().add(btnTimkiemtheoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 170, 40));
 
+        btnTimkiemtheotheloai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/timkiem.png"))); // NOI18N
         btnTimkiemtheotheloai.setText("Tìm kiếm theo thể loại");
         btnTimkiemtheotheloai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimkiemtheotheloaiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheotheloai, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 150, 30));
+        getContentPane().add(btnTimkiemtheotheloai, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 170, 40));
         getContentPane().add(txtTimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 530, 40));
 
         lblSearch.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -123,13 +132,14 @@ public class TimKiemView extends javax.swing.JFrame {
         jLabel1.setText("Nhập từ khóa (*)");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
+        btnTimkiemtheotacgia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/timkiem.png"))); // NOI18N
         btnTimkiemtheotacgia.setText("Tìm kiếm theo tác giả");
         btnTimkiemtheotacgia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimkiemtheotacgiaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheotacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 180, 150, 30));
+        getContentPane().add(btnTimkiemtheotacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 170, 40));
 
         btnBack.setText("< Quay lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -139,20 +149,27 @@ public class TimKiemView extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 540, -1, -1));
 
+        btnShowall.setBackground(new java.awt.Color(204, 204, 204));
+        btnShowall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/qls2.png"))); // NOI18N
         btnShowall.setText("Hiển thị tất cả sách");
         btnShowall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowallActionPerformed(evt);
             }
         });
-        getContentPane().add(btnShowall, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+        getContentPane().add(btnShowall, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, 40));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblClock.setText("AM - PM");
         getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        lblCompulsory.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        lblCompulsory.setForeground(new java.awt.Color(51, 102, 255));
+        lblCompulsory.setText("(*) là các trường bắt buộc");
+        getContentPane().add(lblCompulsory, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel2.setText("lblBG");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
@@ -213,12 +230,20 @@ public class TimKiemView extends javax.swing.JFrame {
         
             List<SachModel> list=SachDao.findAllByName(txtTimkiem.getText());
             updateTable(list);
+            if(list.size()==0){
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả phù hợp");
+                return;
+            }
     }//GEN-LAST:event_btnTimkiemtheotenActionPerformed
 
 
     private void btnTimkiemtheotheloaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemtheotheloaiActionPerformed
         List<SachModel> list=SachDao.findAllByType(txtTimkiem.getText());
         updateTable(list);
+        if(list.size()==0){
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả phù hợp");
+                return;
+            }
     }//GEN-LAST:event_btnTimkiemtheotheloaiActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -232,20 +257,24 @@ public class TimKiemView extends javax.swing.JFrame {
     }//GEN-LAST:event_ThoátActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-           DocGiaView docgia = new DocGiaView(1);
+           DocGiaView docgia = new DocGiaView(dg.getMadg());
            dispose();
            docgia.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnShowallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowallActionPerformed
-            List<SachModel> list=SachDao.findAll();
-            updateTable(list);
-    }//GEN-LAST:event_btnShowallActionPerformed
-
     private void btnTimkiemtheotacgiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemtheotacgiaActionPerformed
             List<SachModel> list=SachDao.findAllByAuthor(txtTimkiem.getText());
             updateTable(list);
+            if(list.size()==0){
+                JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả phù hợp");
+                return;
+            }
     }//GEN-LAST:event_btnTimkiemtheotacgiaActionPerformed
+
+    private void btnShowallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowallActionPerformed
+        List<SachModel> list=SachDao.findAll();
+        updateTable(list);
+    }//GEN-LAST:event_btnShowallActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +307,7 @@ public class TimKiemView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TimKiemView().setVisible(true);
+                new TimKiemView(1).setVisible(true);
             }
         });
     }
@@ -297,6 +326,7 @@ public class TimKiemView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClock;
+    private javax.swing.JLabel lblCompulsory;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JTable tbSach;
     private javax.swing.JTextField txtTimkiem;

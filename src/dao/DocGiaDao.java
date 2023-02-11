@@ -97,6 +97,7 @@ public class DocGiaDao {
         dg.setTendg(rs.getString("TENDG"));
         dg.setSodt(rs.getString("SODT"));
         dg.setEmail(rs.getString("EMAIL"));
+        dg.setMK(rs.getString("MK"));
         dg.setNgaysinh(rs.getDate("NGAYSINH"));
         dg.setCancuoccd(rs.getString("CCCD"));
         return dg;

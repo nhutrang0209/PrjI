@@ -140,14 +140,16 @@ public class QuanLyMuonTraView extends javax.swing.JFrame {
         jLabel1.setText("Quản lý mượn trả");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
 
+        btnMuon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/borrow-book.png"))); // NOI18N
         btnMuon.setText("Mượn sách");
         btnMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMuonActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 160, 50));
+        getContentPane().add(btnMuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 160, 50));
 
+        btnTrasach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/returnbook.png"))); // NOI18N
         btnTrasach.setText("Trả sách");
         btnTrasach.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         btnTrasach.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +157,7 @@ public class QuanLyMuonTraView extends javax.swing.JFrame {
                 btnTrasachActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTrasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 150, 50));
+        getContentPane().add(btnTrasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 150, 50));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -184,7 +186,7 @@ public class QuanLyMuonTraView extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 990, 660));
 

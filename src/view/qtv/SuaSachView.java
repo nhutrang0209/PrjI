@@ -42,7 +42,7 @@ public class SuaSachView extends javax.swing.JFrame {
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{"ID", "Tên sách", "Tên tác giả", "NXB", "Thể loại", "Số lượng",
-            "Số lượng còn lại", "Mã vị trí"});
+            "Số còn lại", "Mã vị trí","Giá bìa"});
         tblSach.setModel(tblModel);
         tblSach.setRowSelectionAllowed(true);
         tblSach.setAutoCreateRowSorter(true);
@@ -53,8 +53,10 @@ public class SuaSachView extends javax.swing.JFrame {
         tblSach.getColumnModel().getColumn(3).setPreferredWidth(80);
         tblSach.getColumnModel().getColumn(4).setPreferredWidth(80);
         tblSach.getColumnModel().getColumn(5).setPreferredWidth(80);
-        tblSach.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tblSach.getColumnModel().getColumn(6).setPreferredWidth(80);
         tblSach.getColumnModel().getColumn(7).setPreferredWidth(80);
+        tblSach.getColumnModel().getColumn(8).setPreferredWidth(75);
+        
     ListSelectionModel rowSelectionModel = tblSach.getSelectionModel();
     rowSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -74,6 +76,7 @@ public class SuaSachView extends javax.swing.JFrame {
         txtSoluong.setText((String)tblSach.getValueAt(selectedRow[0],5));
         txtSoluongconlai.setText((String)tblSach.getValueAt(selectedRow[0],6));
         txtMaViTri.setText((String)tblSach.getValueAt(selectedRow[0],7));
+        txtGiabia.setText(Integer.toString((int) tblSach.getValueAt(selectedRow[0],8)));
         }
       }
     });
@@ -86,7 +89,7 @@ public class SuaSachView extends javax.swing.JFrame {
             tblModel.setRowCount(0);
             for (SachModel r : list) {
                 tblModel.addRow(new Object[]{ r.getMasach(), r.getTensach(), r.getTentacgia(),
-                    r.getNxb(), r.getTheloai(), r.getSoluong(), r.getSoluongconlai(), r.getMavitri()
+                    r.getNxb(), r.getTheloai(), r.getSoluong(), r.getSoluongconlai(), r.getMavitri(), r.getGiabia()
                 });
             }
             tblModel.fireTableDataChanged();
@@ -122,6 +125,13 @@ public class SuaSachView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtMaSach = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtGiabia = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         btnChange = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -166,62 +176,93 @@ public class SuaSachView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblSach);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 860, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 910, 220));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtTenSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 220, 30));
-        jPanel1.add(txtTacGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 170, 30));
-        jPanel1.add(txtNXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 220, 30));
-        jPanel1.add(txtTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 220, 30));
-        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, 30));
-        jPanel1.add(txtSoluongconlai, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 170, 30));
-        jPanel1.add(txtMaViTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 170, 30));
+        jPanel1.add(txtTenSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 220, 30));
+        jPanel1.add(txtTacGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 170, 30));
+        jPanel1.add(txtNXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 220, 30));
+        jPanel1.add(txtTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 220, 30));
+        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 170, 30));
+        jPanel1.add(txtSoluongconlai, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 170, 30));
+        jPanel1.add(txtMaViTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 170, 30));
 
-        jLabel2.setText("Thể loại");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jLabel2.setText("Thể loại (*)");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        jLabel3.setText("Tên sách");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        jLabel3.setText("Tên sách (*)");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel4.setText("Tên tác giả");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+        jLabel4.setText("Tên tác giả (*)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
 
-        jLabel5.setText("Nhà xuất bản");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jLabel5.setText("Nhà xuất bản (*)");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 20));
 
-        jLabel6.setText("Số lượng");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+        jLabel6.setText("Số lượng (*)");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
 
-        jLabel7.setText("Số lượng còn lại");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+        jLabel7.setText("Số lượng còn lại (*)");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
-        jLabel8.setText("Mã vị trí");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
+        jLabel8.setText("Mã vị trí (*)");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         txtMaSach.setEditable(false);
-        jPanel1.add(txtMaSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 220, 30));
+        jPanel1.add(txtMaSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 30));
 
-        jLabel9.setText("Mã sách");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jLabel9.setText("Mã sách (*)");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 690, 240));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel11.setText("(*) là các trường bắt buộc");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel12.setText("(*) là các trường bắt buộc");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel13.setText("(*) là các trường bắt buộc");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel14.setText("(*) là các trường bắt buộc");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel15.setText("(*) là các trường bắt buộc");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, -1));
+        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 220, 30));
+
+        jLabel16.setText("Giá bìa (*)");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 690, 230));
+
+        btnChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editbook.png"))); // NOI18N
         btnChange.setText("Sửa thông tin sách");
         btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, -1, -1));
+        getContentPane().add(btnChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 170, 50));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delebook.png"))); // NOI18N
         btnDelete.setText("Xóa sách");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, 130, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 170, 50));
 
         btnBack.setText("< Quay lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -229,9 +270,9 @@ public class SuaSachView extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, -1, -1));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 90, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 
@@ -276,10 +317,9 @@ public class SuaSachView extends javax.swing.JFrame {
                 ||txtSoluong.getText().trim().isEmpty()||txtSoluongconlai.getText().trim().isEmpty())
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         else{
-            if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-            return;
-            }
-            try {
+            if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn "
+                    + "cập nhật thông tin sách không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                try {
                 SachModel sach = new SachModel();
                 sach.setMasach(selectedMaSach);
                 sach.setTensach(txtTenSach.getText());
@@ -292,7 +332,7 @@ public class SuaSachView extends javax.swing.JFrame {
 
                 SachDao dao = new SachDao();
             if (dao.update(sach)) {
-                JOptionPane.showMessageDialog(this, "Cập nhật độc giả thành công!");
+                JOptionPane.showMessageDialog(this, "Cập nhật thông tin sách thành công!");
                 loadDataToTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
@@ -308,7 +348,7 @@ public class SuaSachView extends javax.swing.JFrame {
             txtSoluong.setText(null);
             txtSoluongconlai.setText(null);
             txtMaViTri.setText(null);
-            
+            }else return;
         }
     }//GEN-LAST:event_btnChangeActionPerformed
 
@@ -393,6 +433,12 @@ public class SuaSachView extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -409,6 +455,7 @@ public class SuaSachView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuExit;
     private javax.swing.JMenuItem menuLogout;
     private javax.swing.JTable tblSach;
+    private javax.swing.JTextField txtGiabia;
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtMaViTri;
     private javax.swing.JTextField txtNXB;

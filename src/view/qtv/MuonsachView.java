@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import view.docgia.DocGiaView;
 
 public class MuonsachView extends javax.swing.JFrame {
 
@@ -86,13 +87,14 @@ public class MuonsachView extends javax.swing.JFrame {
         jLabel3.setText("Số lượng (*)");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
+        btnMuon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/borrowbook.png"))); // NOI18N
         btnMuon.setText("Yêu cầu");
         btnMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMuonActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jPanel1.add(btnMuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 110, 40));
         jPanel1.add(numBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 160, 30));
 
         txtBookId.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public class MuonsachView extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 490, 270));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 550));
 
@@ -176,13 +178,16 @@ public class MuonsachView extends javax.swing.JFrame {
         int madg=Integer.parseInt(txtMadg.getText());
         int maSach=Integer.parseInt(txtBookId.getText());
         int num=(int)numBook.getValue();
+        if(PhieuDao.numBookNotReturnOfMadg(madg)>=10){
+            JOptionPane.showMessageDialog(rootPane, "Số lượng sách chưa trả vượt quá 10", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else
         PhieuDao.muonSach(madg,maSach,num);
     }//GEN-LAST:event_btnMuonActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        QuanLyMuonTraView muontra = new QuanLyMuonTraView();
+        QuanLyMuonTraView admin = new QuanLyMuonTraView();
         dispose();
-        muontra.setVisible(true);
+        admin.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void lblClockAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblClockAncestorAdded

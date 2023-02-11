@@ -134,6 +134,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnMuon">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/image/borrowbook.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Y&#xea;u c&#x1ea7;u"/>
           </Properties>
           <Events>
@@ -141,7 +144,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="400" y="110" width="-1" height="-1"/>
+              <AbsoluteConstraints x="360" y="120" width="110" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -223,7 +226,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/image/nen-background-trang-dep-va-don-gian_110344503.jpg"/>
+          <Image iconType="3" name="/image/background.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>

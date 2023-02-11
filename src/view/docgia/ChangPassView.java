@@ -91,6 +91,7 @@ public class ChangPassView extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, -1, -1));
 
+        btnUpdatePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/password.jpg"))); // NOI18N
         btnUpdatePass.setText("Cập nhật mật khẩu");
         btnUpdatePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +106,7 @@ public class ChangPassView extends javax.swing.JFrame {
         jLabel1.setText("(*) là các trường bắt buộc");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 670, 490));
 
@@ -132,20 +133,33 @@ public class ChangPassView extends javax.swing.JFrame {
 
     private void btnUpdatePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePassActionPerformed
        //Thay doi mk tren CSDL
+       String oP = txtOldPass.getText();
        if(txtOldPass.getText().isEmpty() ||
           txtNewPass.getText().isEmpty() ||
           txtConfirmNewPass.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Hãy nhập đủ các trường");
        }
-       else if(txtOldPass.getText()!=dg.getMK()){
+       else if(!oP.equals(dg.getMK())){
+            System.out.println("MK:"+dg.getMK()+" "+oP);
             JOptionPane.showMessageDialog(this, "Mật khẩu cũ không chính xác");
        }
-       else if(txtNewPass.getText()!=txtConfirmNewPass.getText()){
-            JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp");
+       else if (txtNewPass.getText().equals(txtOldPass.getText())){
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới ko được trùng mật khẩu cũ");
+       }
+       else if(!txtNewPass.getText().equals(txtConfirmNewPass.getText())){
+            JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu mới không khớp");
 
        }
-       else LoginDao.changePass(dg.getMadg(),txtNewPass.getText());
-        
+       else{
+           LoginDao.changePass(dg.getMadg(),txtNewPass.getText());
+           JOptionPane.showMessageDialog(this, "Thay đổi thành công");
+           DocGiaView docgiaview = new DocGiaView(dg.getMadg());
+            dispose();
+            docgiaview.setVisible(true);
+           txtOldPass.setText("");
+           txtNewPass.setText("");
+           txtConfirmNewPass.setText("");
+       }
     }//GEN-LAST:event_btnUpdatePassActionPerformed
 
     private void newPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordActionPerformed
@@ -157,52 +171,20 @@ public class ChangPassView extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmNewPasswordActionPerformed
 
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
-   //     DocGiaView docgiaview = new DocGiaView(dg.getMadg());
+        DocGiaView docgiaview = new DocGiaView(dg.getMadg());
         dispose();
-   //     docgiaview.setVisible(true);
+        docgiaview.setVisible(true);
     }//GEN-LAST:event_quitActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LoginView login = new LoginView();
+
         dispose();
-        login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangPassView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangPassView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangPassView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangPassView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangPassView(new DocGiaModel(1,"NNT","03444334","trang2002cool@gmail.com","123",new Date(2002,2,9),"0332342424232")).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnExit;

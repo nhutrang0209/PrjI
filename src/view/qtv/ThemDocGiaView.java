@@ -114,7 +114,7 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Thêm độc giả mới");
@@ -158,17 +158,18 @@ public class ThemDocGiaView extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
 
         btnInsert.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/addpeople.jpg"))); // NOI18N
         btnInsert.setText("Thêm độc giả");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertActionPerformed(evt);
             }
         });
-        jPanel1.add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 120, 30));
+        jPanel1.add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 160, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 690, 380));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 630));
 
         jMenu1.setText("Hệ thống");
@@ -200,25 +201,28 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 || jDateChooser.getDate()==null) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        try {
-            DocGiaModel dg = new DocGiaModel();
-            dg.setMK(txtEmail.getText());
-            dg.setTendg(txtTendg.getText());
-            dg.setSodt(txtSodt.getText());
-            dg.setEmail(txtEmail.getText());
-            dg.setNgaysinh(jDateChooser.getDate());
-            dg.setCancuoccd(txtCC.getText());
+        else{
+            try {
+                DocGiaModel dg = new DocGiaModel();
+                dg.setMK(txtCC.getText());
+                dg.setTendg(txtTendg.getText());
+                dg.setSodt(txtSodt.getText());
+                dg.setEmail(txtEmail.getText());
+                dg.setNgaysinh(jDateChooser.getDate());
+                dg.setCancuoccd(txtCC.getText());
 
-            DocGiaDao dao = new DocGiaDao();
-            if (dao.insert(dg)) {
-                JOptionPane.showMessageDialog(this, "Thêm mới độc giả thành công!");
-                loadDataToTable();
-            } else {
-                JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
+                DocGiaDao dao = new DocGiaDao();
+                if (dao.insert(dg)) {
+                    JOptionPane.showMessageDialog(this, "Thêm mới độc giả thành công!");
+                    loadDataToTable();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

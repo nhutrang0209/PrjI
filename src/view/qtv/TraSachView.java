@@ -12,6 +12,7 @@ import database.ConnectDB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import static java.time.Instant.now;
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class TraSachView extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         bangmuon = new javax.swing.JTable();
+        lblCambotrong = new javax.swing.JLabel();
         tableName = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         masach1Label = new javax.swing.JLabel();
@@ -80,6 +82,7 @@ public class TraSachView extends javax.swing.JFrame {
         txtTongphat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        lblVuilong = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -88,18 +91,19 @@ public class TraSachView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 240, 30));
+        getContentPane().add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 290, 40));
 
-        jLabel1.setText("Nhập mã độc giả");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jLabel1.setText("Nhập mã độc giả (*)");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
         btnSearch.setText("Hiển thị");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 80, 30));
+        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 110, 40));
 
         bangmuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,6 +133,11 @@ public class TraSachView extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 580, 180));
 
+        lblCambotrong.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblCambotrong.setForeground(new java.awt.Color(0, 51, 255));
+        lblCambotrong.setText("(*) là các trường bắt buộc");
+        getContentPane().add(lblCambotrong, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+
         tableName.setText("Danh sách mượn của ?");
         getContentPane().add(tableName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
@@ -156,13 +165,14 @@ public class TraSachView extends javax.swing.JFrame {
         });
         jPanel2.add(hongSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 52, 150, 30));
 
+        traSachBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/returnbook.png"))); // NOI18N
         traSachBtn.setText("Trả sách");
         traSachBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 traSachBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(traSachBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        jPanel2.add(traSachBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 120, 40));
 
         jScrollPane3.setViewportView(phatPane);
 
@@ -194,11 +204,16 @@ public class TraSachView extends javax.swing.JFrame {
         });
         getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 510, 90, 30));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        lblVuilong.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        lblVuilong.setText("Nhấp để chọn phiếu sách muốn trả");
+        getContentPane().add(lblVuilong, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1280, 700));
 
         jMenu1.setText("Hệ thống");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menuLogout.setText("Đăng xuất");
         menuLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +224,11 @@ public class TraSachView extends javax.swing.JFrame {
         jMenu1.add(menuLogout);
 
         menuExit.setText("Thoát");
+        menuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuExitActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuExit);
 
         jMenuBar1.add(jMenu1);
@@ -252,11 +272,13 @@ public class TraSachView extends javax.swing.JFrame {
             int masach=r.getMasach();
             int giabia=r.getGiabia();
             int soluong=r.getSoluong();
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
             Date ngaymuon=r.getNgaymuon();
             Date ngaydenhan=r.getNgaydenhan();
             long songayquahan=(today.getTime()/(60*60*24*1000)-ngaydenhan.getTime()/(24*60*60*1000));
             if(songayquahan<=0) songayquahan=0;
-            title.addRow(new Object[] {maphieu, masach,giabia,soluong,ngaymuon,ngaydenhan,songayquahan});
+            title.addRow(new Object[] {maphieu, masach,giabia,soluong,ngaymuon,sdf.format(ngaydenhan),songayquahan});
             }
             bangmuon.setModel(title);
             bangmuon.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -292,7 +314,7 @@ public class TraSachView extends javax.swing.JFrame {
                 int giabia=current.getGiabia();
                 long songayquahan=(long)bangmuon.getValueAt(selectedRow,6);
                 long tienphat=500*songayquahan+(int)hongSpinner.getValue()*giabia;
-                phatPane.setText(Long.toString(tienphat));
+                phatPane.setText(Long.toString(500*songayquahan));
                 txtTongphat.setText(Long.toString(tienphat));
             }
         } catch (Exception e) {
@@ -339,6 +361,10 @@ public class TraSachView extends javax.swing.JFrame {
         muontra.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_menuExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,6 +397,8 @@ public class TraSachView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCambotrong;
+    private javax.swing.JLabel lblVuilong;
     private javax.swing.JLabel masach1Label;
     private javax.swing.JTextPane masachPane;
     private javax.swing.JMenuItem menuExit;

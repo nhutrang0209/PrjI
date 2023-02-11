@@ -85,6 +85,7 @@ public class DocGiaView extends javax.swing.JFrame {
         bangmuon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtNotReturned = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -94,33 +95,36 @@ public class DocGiaView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/timkiem.png"))); // NOI18N
         btnSearchBook.setText("Tìm kiếm sách");
         btnSearchBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchBookActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSearchBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 130, 50));
+        getContentPane().add(btnSearchBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 140, 50));
 
+        btnRule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/qldg.png"))); // NOI18N
         btnRule.setText("Quy định");
         btnRule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRuleActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRule, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 130, 50));
+        getContentPane().add(btnRule, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 140, 50));
 
         lblGreeting.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblGreeting.setText("Xin chào ?");
         getContentPane().add(lblGreeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 380, 50));
 
+        btnChangePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/password.jpg"))); // NOI18N
         btnChangePass.setText("Đổi mật khẩu");
         btnChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangePassActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 130, 50));
+        getContentPane().add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 140, 50));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -141,40 +145,40 @@ public class DocGiaView extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblEmail.setText("Email:");
-        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, -1, -1));
+        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
         lblMadg.setText("Mã độc giả:");
-        jPanel2.add(lblMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        jPanel2.add(lblMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         lblNgaysinh.setText("Ngày sinh:");
-        jPanel2.add(lblNgaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        jPanel2.add(lblNgaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
         lblHoten.setText("Họ và tên:");
-        jPanel2.add(lblHoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+        jPanel2.add(lblHoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         lblSdt.setText("Số điện thoại:");
-        jPanel2.add(lblSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
+        jPanel2.add(lblSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
         lblCCD.setText("Căn cước công dân");
-        jPanel2.add(lblCCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 130, 20));
+        jPanel2.add(lblCCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 130, 20));
 
         txtMadg.setEditable(false);
-        jPanel2.add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 170, 30));
+        jPanel2.add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
 
         txtHoten.setEditable(false);
-        jPanel2.add(txtHoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 30));
+        jPanel2.add(txtHoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 170, 30));
 
         txtNgaySinh.setEditable(false);
-        jPanel2.add(txtNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 170, 30));
+        jPanel2.add(txtNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, 30));
 
         txtSdt.setEditable(false);
-        jPanel2.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 170, 30));
+        jPanel2.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 170, 30));
 
         txtEmail.setEditable(false);
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 170, 30));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 170, 30));
 
         txtCCCD.setEditable(false);
-        jPanel2.add(txtCCCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 170, 30));
+        jPanel2.add(txtCCCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 170, 30));
 
         bangmuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,6 +199,7 @@ public class DocGiaView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        bangmuon.setEnabled(false);
         bangmuon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bangmuonMouseClicked(evt);
@@ -212,9 +217,13 @@ public class DocGiaView extends javax.swing.JFrame {
         jLabel2.setText("Thông tin mượn sách");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
 
+        txtNotReturned.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtNotReturned.setText("Số sách đang mượn: ");
+        jPanel2.add(txtNotReturned, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 780, 450));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jMenu1.setText("Hệ thống");
@@ -250,6 +259,7 @@ public class DocGiaView extends javax.swing.JFrame {
         txtCCCD.setText(this.dg.getCancuoccd());
         txtEmail.setText(this.dg.getEmail());
         lblGreeting.setText("Xin chào " + this.dg.getTendg());
+        txtNotReturned.setText("Số sách chưa trả: "+PhieuDao.numBookNotReturnOfMadg(this.dg.getMadg()));
         
     }
      private void updateTable(int madg){
@@ -317,7 +327,7 @@ public class DocGiaView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBookActionPerformed
-        view.docgia.TimKiemView timkiem = new view.docgia.TimKiemView();
+        view.docgia.TimKiemView timkiem = new view.docgia.TimKiemView(dg.getMadg());
         timkiem.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSearchBookActionPerformed
@@ -325,18 +335,20 @@ public class DocGiaView extends javax.swing.JFrame {
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
         ChangPassView changepass = new ChangPassView(dg);
         changepass.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnChangePassActionPerformed
 
     private void btnRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRuleActionPerformed
         
-        String message1 = "1. Chỉnh sửa thông tin cá nhân: Bạn đọc vui lòng đến trưc tiếp đến thư viện \n" +
+        String message1 = "1. Chỉnh sửa thông tin cá nhân: Bạn đọc vui lòng đến trưc tiếp đến thư viện \n"
+                + "và đăng ký với cán bộ thư viện\n" +
                            "2. Mượn sách:" + "\n" +
-                            "  Thời gian mượn tối đa: 14 ngày/1 quyển" + "\n" +
-                            "  Tiền phạt quá hạn mượn: 1000đ/1 ngày/1 quyển" + "\n" +
-                            "  Nếu bạn đọc đang mượn quá 10 quyển thì không được mượn nữa \n"+
+                            "  Thời gian mượn tối đa: 30 ngày/1 quyển" + "\n" +
+                            "  Tiền phạt quá hạn mượn: 500đ/1 ngày/1 quyển" + "\n" +
+                            "  Nếu bạn đọc đang mượn quá 10 quyển, vui lòng trả sách để tiếp tục mượn thêm sách \n"+
                             "3. Trả sách: \n" +
                             "  Phải đảm bảo sách không bị mất trang, dính bẩn, hư hỏng. \n" +
-                            "  Nếu sách bị hư hỏng, sẽ xem xét tình trạng và có hình thức phạt";
+                            "  Nếu sách bị hư hỏng, độc giả phải nộp phạt bằng giá bìa của sách";
                             
         JOptionPane.showMessageDialog(new JFrame(), message1, "Quy định thư viện", 0x1);
     }//GEN-LAST:event_btnRuleActionPerformed
@@ -351,55 +363,14 @@ public class DocGiaView extends javax.swing.JFrame {
 
     private void bangmuonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangmuonMouseClicked
         // TODO add your handling code here:
-        //        try {
-            //            int selectedRow = bangmuon.getSelectedRow();
-            //            txtPhatHong.setText("0");
-            //            if (0<=selectedRow && selectedRow < phieuList.size()) {
-                //                System.out.println(phieuList.size()+"va"+selectedRow);
-                //                current=phieuList.get(selectedRow);
-                //                masachPane.setText(Integer.toString(current.getMasach()));
-                //                int giabia=current.getGiabia();
-                //                long songayquahan=(long)bangmuon.getValueAt(selectedRow,6);
-                //                long tienphat=500*songayquahan+(int)hongSpinner.getValue()*giabia;
-                //                phatPane.setText(Long.toString(tienphat));
-                //                txtTongphat.setText(Long.toString(tienphat));
-                //            }
-            //        } catch (Exception e) {
-            //            e.printStackTrace();
-            //        }
+        
     }//GEN-LAST:event_bangmuonMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DocGiaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DocGiaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DocGiaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DocGiaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DocGiaView(1).setVisible(true);
@@ -434,6 +405,7 @@ public class DocGiaView extends javax.swing.JFrame {
     private javax.swing.JTextField txtHoten;
     private javax.swing.JTextField txtMadg;
     private javax.swing.JTextField txtNgaySinh;
+    private javax.swing.JLabel txtNotReturned;
     private javax.swing.JTextField txtSdt;
     // End of variables declaration//GEN-END:variables
 }

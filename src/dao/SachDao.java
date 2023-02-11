@@ -33,7 +33,7 @@ public class SachDao {
     
     public static boolean insert(SachModel sach) throws Exception {
 
-        String sql = "INSERT INTO sach( TENSACH, TENTACGIA, NXB,THELOAI, SOLUONG, SOLUONGCONLAI, MAVITRI) VALUES (?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO sach( TENSACH, TENTACGIA, NXB,THELOAI, SOLUONG, SOLUONGCONLAI, MAVITRI, GIABIA) VALUES (?,?,?,?,?,?,?,?) ";
         try {
             ConnectDB cn=new ConnectDB();
             Connection conn = (Connection) cn.getConnection();
@@ -45,6 +45,7 @@ public class SachDao {
             pstm.setString(5, sach.getSoluong());
             pstm.setString(6, sach.getSoluongconlai());
             pstm.setString(7, sach.getMavitri());
+            pstm.setInt(8, sach.getGiabia());
             return pstm.executeUpdate() > 0;
         }catch(Exception e){
             return false;

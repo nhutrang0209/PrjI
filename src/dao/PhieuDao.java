@@ -109,10 +109,26 @@ public class PhieuDao {
                  list.add(phieuModel);
         }      
             }catch (Exception e) {
+                e.printStackTrace();
         }
         return list;
     }
-    
+    public static int numBookNotReturnOfMadg(int madg){
+        try{
+            String sql="SELECT SUM(SOLUONG) FROM phieu WHERE NGAYTRA IS NULL AND MADG="+madg+" GROUP BY MADG";
+            ConnectDB cn = new ConnectDB();
+            Connection conn = (Connection) cn.getConnection(); 
+            PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
+            ResultSet rs=pstm.executeQuery();
+            rs.next();
+            int num=rs.getInt(1);
+            System.out.println(sql+" "+num);
+            return num;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+            }
+    }
     public static void muonSach(int madg,int maSach,int num){
         String sql="SELECT CURDATE()";
          try {

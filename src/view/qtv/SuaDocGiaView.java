@@ -139,6 +139,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         dateField = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         txtMadg = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -149,6 +150,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editpeople.png"))); // NOI18N
         btnChange.setText("Sửa độc giả");
         btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,41 +200,47 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 523, 90, 30));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 540, 90, 30));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTendg.setText("Tên độc giả");
-        jPanel2.add(lblTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        lblTendg.setText("Tên độc giả (*)");
+        jPanel2.add(lblTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         txtTendg.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(txtTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 210, 30));
+        jPanel2.add(txtTendg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 210, 30));
 
-        lblEmail.setText("Email");
-        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 210, 30));
+        lblEmail.setText("Email (*)");
+        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 210, 30));
 
-        jLabel1.setText("Căn cước");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 60, -1));
-        jPanel2.add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 210, 30));
+        jLabel1.setText("Căn cước (*)");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 70, -1));
+        jPanel2.add(txtCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 210, 30));
 
-        lblBirth.setText("Ngày sinh");
-        jPanel2.add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        lblBirth.setText("Ngày sinh (*)");
+        jPanel2.add(lblBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        lblSodt.setText("Số điện thoại");
-        jPanel2.add(lblSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
-        jPanel2.add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 210, 30));
-        jPanel2.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 210, 30));
+        lblSodt.setText("Số điện thoại (*)");
+        jPanel2.add(lblSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jPanel2.add(txtSodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 210, 30));
+        jPanel2.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 210, 30));
 
-        jLabel3.setText("Mã độc giả");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jLabel3.setText("Mã độc giả (*)");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         txtMadg.setEditable(false);
-        jPanel2.add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 210, 30));
+        jPanel2.add(txtMadg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 210, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel5.setText("(*) là các trường bắt buộc");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 360, 280));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/deletepeople.png"))); // NOI18N
         btnDelete.setText("Xóa độc giả");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +249,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         });
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 130, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1070, 660));
 
@@ -279,28 +287,31 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 || txtCC.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-            return;
-        }
-        try {
-            DocGiaModel dg = new DocGiaModel();
-            dg.setMadg(selectedMadg);
-            dg.setTendg(txtTendg.getText());
-            dg.setSodt(txtSodt.getText());
-            dg.setEmail(txtEmail.getText());
-            dg.setNgaysinh(dateField.getDate());
-            dg.setCancuoccd(txtCC.getText());
+        else{
+            if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                try {
+                    DocGiaModel dg = new DocGiaModel();
+                    dg.setMadg(selectedMadg);
+                    dg.setTendg(txtTendg.getText());
+                    dg.setSodt(txtSodt.getText());
+                    dg.setEmail(txtEmail.getText());
+                    dg.setNgaysinh(dateField.getDate());
+                    dg.setCancuoccd(txtCC.getText());
 
-            DocGiaDao dao = new DocGiaDao();
-            if (dao.update(dg)) {
-                JOptionPane.showMessageDialog(this, "Cập nhật độc giả thành công!");
-                loadDataToTable();
-            } else {
-                JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+                    DocGiaDao dao = new DocGiaDao();
+                    if (dao.update(dg)) {
+                        JOptionPane.showMessageDialog(this, "Cập nhật độc giả thành công!");
+                        loadDataToTable();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else return;
+            
         }
+        
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void tbldgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldgMouseClicked
@@ -341,29 +352,30 @@ public class SuaDocGiaView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-                if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-            return;
-        }
-        try {
-            DocGiaModel dg = new DocGiaModel();
-            dg.setMadg(selectedMadg);
-            dg.setTendg(txtTendg.getText());
-            dg.setSodt(txtSodt.getText());
-            dg.setEmail(txtEmail.getText());
-            dg.setNgaysinh(dateField.getDate());
-            dg.setCancuoccd(txtCC.getText());
-            
-            DocGiaDao dao = new DocGiaDao();
-            if (dao.delete(dg)){
-                JOptionPane.showMessageDialog(this, "Xóa độc giả thành công!");
-                btnNewActionPerformed(evt);
-                loadDataToTable();
-            } else {
-                JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
+        if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                DocGiaModel dg = new DocGiaModel();
+                dg.setMadg(selectedMadg);
+                dg.setTendg(txtTendg.getText());
+                dg.setSodt(txtSodt.getText());
+                dg.setEmail(txtEmail.getText());
+                dg.setNgaysinh(dateField.getDate());
+                dg.setCancuoccd(txtCC.getText());
+
+                DocGiaDao dao = new DocGiaDao();
+                if (dao.delete(dg)){
+                    JOptionPane.showMessageDialog(this, "Xóa độc giả thành công!");
+                    btnNewActionPerformed(evt);
+                    loadDataToTable();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
+                }
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }else return;
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
       
@@ -411,6 +423,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

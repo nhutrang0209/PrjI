@@ -48,12 +48,12 @@ public class LoginView extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         adminLoginButton = new javax.swing.JButton();
         userLoginButton = new javax.swing.JButton();
-        btnQuenmk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblClock = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnQuenmk = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -99,14 +99,6 @@ public class LoginView extends javax.swing.JFrame {
         });
         getContentPane().add(userLoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 210, 30));
 
-        btnQuenmk.setText("Quên mật khẩu");
-        btnQuenmk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuenmkActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnQuenmk, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 120, 30));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
@@ -128,7 +120,7 @@ public class LoginView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Đại học Bách Khoa Hà Nội");
@@ -138,7 +130,15 @@ public class LoginView extends javax.swing.JFrame {
         jLabel6.setText("Thư viện Tạ Quang Bửu");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        btnQuenmk.setText("Quên mật khẩu");
+        btnQuenmk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuenmkActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnQuenmk, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 120, 30));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
         background.getAccessibleContext().setAccessibleDescription("");
 
@@ -189,9 +189,7 @@ public class LoginView extends javax.swing.JFrame {
                 AdminView am = new AdminView(LoginDao.findAdminByEmailAndPassword(email,password));
                 am.setVisible(true);
             }
-            
-            else JOptionPane.showMessageDialog(this, "Đăng nhập thành công \n "
-                                                                + "Kiểm tra lại email và mật khẩu");
+            else JOptionPane.showMessageDialog(this, "Email hoặt mật khẩu không đúng");
 
 
     }//GEN-LAST:event_adminLoginButtonActionPerformed
@@ -207,7 +205,7 @@ public class LoginView extends javax.swing.JFrame {
                 DocGiaView dgv = new DocGiaView(LoginDao.findUserByEmailAndPassword(email,password));
                 dgv.setVisible(true);
             }
-            else System.out.println("Dang nhap khong thanh cong");
+            else JOptionPane.showMessageDialog(this, "Email hoặt mật khẩu không đúng");
     
     }//GEN-LAST:event_userLoginButtonActionPerformed
 

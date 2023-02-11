@@ -49,6 +49,8 @@ public class ThemSachView extends javax.swing.JFrame {
         txtMaViTri = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnInsertBook = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtGiabia = new javax.swing.JTextField();
         lblClock = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -65,7 +67,6 @@ public class ThemSachView extends javax.swing.JFrame {
         jLabel1.setText("Thêm sách");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBack.setText("< Quay lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,21 +109,34 @@ public class ThemSachView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Vị trí (*)");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 50, -1));
+
+        txtSoluong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoluongActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 200, 40));
         jPanel1.add(txtMaViTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 200, 40));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("(*) là các trường bắt buộc");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
 
         btnInsertBook.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInsertBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/addbook.png"))); // NOI18N
         btnInsertBook.setText("Thêm");
         btnInsertBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertBookActionPerformed(evt);
             }
         });
-        jPanel1.add(btnInsertBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 120, 30));
+        jPanel1.add(btnInsertBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 130, 50));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Giá bìa (*)");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 180, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 750, 360));
 
@@ -141,7 +155,7 @@ public class ThemSachView extends javax.swing.JFrame {
         });
         getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 600));
 
@@ -192,7 +206,8 @@ public class ThemSachView extends javax.swing.JFrame {
     private void btnInsertBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertBookActionPerformed
            if (txtTenSach.getText().trim().isEmpty() || txtTacGia.getText().trim().isEmpty()
                 || txtNXB.getText().trim().isEmpty() || txtTheLoai.getText().trim().isEmpty()
-                || txtSoluong.getText().trim().isEmpty() || txtMaViTri.getText().trim().isEmpty()) {
+                || txtSoluong.getText().trim().isEmpty() || txtMaViTri.getText().trim().isEmpty()
+                || txtGiabia.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }else{
             try {
@@ -204,6 +219,7 @@ public class ThemSachView extends javax.swing.JFrame {
                 sach.setSoluong(txtSoluong.getText());
                 sach.setSoluongconlai(txtSoluong.getText());
                 sach.setMavitri(txtMaViTri.getText());
+                sach.setGiabia(Integer.parseInt(txtGiabia.getText()));
                 SachDao dao = new SachDao();
                 if (dao.insert(sach)) {
                     JOptionPane.showMessageDialog(this, "Thêm mới sách thành công!");
@@ -222,6 +238,10 @@ public class ThemSachView extends javax.swing.JFrame {
         dispose();
         admin.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtSoluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoluongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +283,7 @@ public class ThemSachView extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertBook;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -278,6 +299,7 @@ public class ThemSachView extends javax.swing.JFrame {
     private javax.swing.JLabel lblClock;
     private javax.swing.JMenuItem menuExit;
     private javax.swing.JMenuItem menuLogout;
+    private javax.swing.JTextField txtGiabia;
     private javax.swing.JTextField txtMaViTri;
     private javax.swing.JTextField txtNXB;
     private javax.swing.JTextField txtSoluong;

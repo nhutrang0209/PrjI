@@ -40,22 +40,24 @@ public class AdminView extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnInsert.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/addpeople.jpg"))); // NOI18N
         btnInsert.setText("Thêm độc giả");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 170, 40));
+        getContentPane().add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 180, 50));
 
         btnThemsach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThemsach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/addbook.png"))); // NOI18N
         btnThemsach.setText("Thêm sách");
         btnThemsach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemsachActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThemsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 170, 40));
+        getContentPane().add(btnThemsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 180, 50));
 
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -73,13 +75,14 @@ public class AdminView extends javax.swing.JFrame {
         getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, 30));
 
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/in4people.png"))); // NOI18N
         btnEdit.setText("Thông tin độc giả");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 170, 40));
+        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 180, 50));
 
         lblQLDG.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblQLDG.setText("Quản lý độc giả");
@@ -87,27 +90,29 @@ public class AdminView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Quản lý sách");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, 30));
 
         btnSuasach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSuasach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bookinfor.png"))); // NOI18N
         btnSuasach.setText("Thông tin sách");
         btnSuasach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuasachActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSuasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 170, 40));
+        getContentPane().add(btnSuasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 180, 50));
 
         btnMuontra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMuontra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/borrowbook.png"))); // NOI18N
         btnMuontra.setText("Quản lý mượn trả");
         btnMuontra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMuontraActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMuontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 170, 40));
+        getContentPane().add(btnMuontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, 180, 50));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nen-background-trang-dep-va-don-gian_110344503.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 620));
 

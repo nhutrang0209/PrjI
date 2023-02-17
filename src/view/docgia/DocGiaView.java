@@ -348,7 +348,9 @@ public class DocGiaView extends javax.swing.JFrame {
                             "  Nếu bạn đọc đang mượn quá 10 quyển, vui lòng trả sách để tiếp tục mượn thêm sách \n"+
                             "3. Trả sách: \n" +
                             "  Phải đảm bảo sách không bị mất trang, dính bẩn, hư hỏng. \n" +
-                            "  Nếu sách bị hư hỏng, độc giả phải nộp phạt bằng giá bìa của sách";
+                            "  Nếu sách bị hư hỏng, độc giả phải nộp phạt bằng giá bìa của sách \n" +
+                            "4. Khi tạo tài khoản mới, mật khẩu mặc định là số Căn cước công dân \n"
+                + "Bạn đọc nên đổi mật khẩu này ngay sau khi tạo tài khoản ";
                             
         JOptionPane.showMessageDialog(new JFrame(), message1, "Quy định thư viện", 0x1);
     }//GEN-LAST:event_btnRuleActionPerformed

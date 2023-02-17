@@ -47,6 +47,8 @@ public class PhieuDao {
                 int masach=rs.getInt(3);
                 int giabia=rs.getInt(4);
                 int soluong=rs.getInt(5);
+                
+                
                 Date ngaymuon=rs.getDate(6);
                 //Ngay tra chua tra
                 PhieuModel phieuModel= new PhieuModel(maphieu,madg,masach,giabia,soluong,ngaymuon,null);

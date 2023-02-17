@@ -280,6 +280,34 @@ public class SuaDocGiaView extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void reset(){
+        txtMadg.setText(null);
+        txtCC.setText(null);
+        txtEmail.setText(null);
+        txtMadg.setText(null);
+        txtSodt.setText(null);
+        txtTendg.setText(null);
+        dateField.setDate(null);
+    }
+    
+    private boolean checkCC(){
+        String st = txtCC.getText();
+        if (st.length()!=12) return false;
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
+    private boolean checkSdt(){
+        String st = txtSodt.getText();
+        if (st.length()!=10) return false;
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         if (txtTendg.getText().trim().isEmpty()
                 || txtSodt.getText().trim().isEmpty()
@@ -287,7 +315,9 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                 || txtCC.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        else{
+        else if (!checkCC()) JOptionPane.showMessageDialog(rootPane, "Căn cước phải gồm 12 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
+         else if (!checkSdt()) JOptionPane.showMessageDialog(rootPane, "Số điện thoại phải gồm 10 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
+         else{
             if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật thông tin độc giả không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 try {
                     DocGiaModel dg = new DocGiaModel();
@@ -302,6 +332,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                     if (dao.update(dg)) {
                         JOptionPane.showMessageDialog(this, "Cập nhật độc giả thành công!");
                         loadDataToTable();
+                        reset();
                     } else {
                         JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
                     }
@@ -367,6 +398,7 @@ public class SuaDocGiaView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Xóa độc giả thành công!");
                     btnNewActionPerformed(evt);
                     loadDataToTable();
+                    reset();
                 } else {
                     JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
                 }

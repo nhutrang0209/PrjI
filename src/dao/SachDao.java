@@ -42,8 +42,8 @@ public class SachDao {
             pstm.setString(2, sach.getTentacgia());
             pstm.setString(3, sach.getNxb());
             pstm.setString(4, sach.getTheloai());
-            pstm.setString(5, sach.getSoluong());
-            pstm.setString(6, sach.getSoluongconlai());
+            pstm.setInt(5, sach.getSoluong());
+            pstm.setInt(6, sach.getSoluongconlai());
             pstm.setString(7, sach.getMavitri());
             pstm.setInt(8, sach.getGiabia());
             return pstm.executeUpdate() > 0;
@@ -55,18 +55,19 @@ public class SachDao {
     public static boolean update(SachModel sach) throws Exception {
       //  dg.printDg();
         String sql = "UPDATE sach SET TENSACH = ?, TENTACGIA = ?, NXB = ?, THELOAI = ?, "
-                + "SOLUONG = ?, SOLUONGCONLAI = ?, MAVITRI = ?  WHERE MASACH = ? ";
+                + "SOLUONG = ?, SOLUONGCONLAI = ?, MAVITRI = ?, GIABIA =?  WHERE MASACH = ? ";
                 ConnectDB cn=new ConnectDB();
                 Connection conn = (Connection) cn.getConnection(); 
                 PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(8,sach.getMasach());
+            pstm.setString(9,sach.getMasach());
             pstm.setString(1, sach.getTensach());
             pstm.setString(2, sach.getTentacgia());
             pstm.setString(3, sach.getNxb());
             pstm.setString(4, sach.getTheloai());
-            pstm.setString(5, sach.getSoluong());
-            pstm.setString(6, sach.getSoluongconlai());
+            pstm.setInt(5, sach.getSoluong());
+            pstm.setInt(6, sach.getSoluongconlai());
             pstm.setString(7, sach.getMavitri());
+            pstm.setInt(8, sach.getGiabia());
   
             return pstm.executeUpdate() > 0;
 
@@ -95,8 +96,8 @@ public class SachDao {
         sach.setTentacgia(rs.getString("TENTACGIA"));
         sach.setNxb(rs.getString("NXB"));
         sach.setTheloai(rs.getString("THELOAI"));
-        sach.setSoluong(rs.getString("SOLUONG"));
-        sach.setSoluongconlai(rs.getString("SOLUONGCONLAI"));
+        sach.setSoluong(rs.getInt("SOLUONG"));
+        sach.setSoluongconlai(rs.getInt("SOLUONGCONLAI"));
         sach.setMavitri(rs.getString("MAVITRI"));
         sach.setGiabia(rs.getInt("GIABIA"));
         return sach;

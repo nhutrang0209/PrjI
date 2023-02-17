@@ -45,12 +45,13 @@ public class ThemSachView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtSoluong = new javax.swing.JTextField();
         txtMaViTri = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnInsertBook = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtGiabia = new javax.swing.JTextField();
+        txtSoluong = new javax.swing.JSpinner();
+        lblVNĐ = new javax.swing.JLabel();
         lblClock = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -109,13 +110,6 @@ public class ThemSachView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Vị trí (*)");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 50, -1));
-
-        txtSoluong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoluongActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 200, 40));
         jPanel1.add(txtMaViTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 200, 40));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -136,7 +130,17 @@ public class ThemSachView extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Giá bìa (*)");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
-        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 180, 40));
+
+        txtGiabia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGiabiaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 140, 40));
+        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 200, 40));
+
+        lblVNĐ.setText("VNĐ");
+        jPanel1.add(lblVNĐ, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 750, 360));
 
@@ -203,21 +207,30 @@ public class ThemSachView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblClockAncestorRemoved
 
+    private boolean checkGia(){
+        String st = txtGiabia.getText();
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
     private void btnInsertBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertBookActionPerformed
            if (txtTenSach.getText().trim().isEmpty() || txtTacGia.getText().trim().isEmpty()
                 || txtNXB.getText().trim().isEmpty() || txtTheLoai.getText().trim().isEmpty()
-                || txtSoluong.getText().trim().isEmpty() || txtMaViTri.getText().trim().isEmpty()
+                || txtSoluong.getValue()==null|| txtMaViTri.getText().trim().isEmpty()
                 || txtGiabia.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
-        }else{
+        }else if (!checkGia()) JOptionPane.showMessageDialog(rootPane, "Giá bìa phải có giá trị là 1 số", "Warning", JOptionPane.WARNING_MESSAGE);
+            else{
             try {
                 SachModel sach = new SachModel();
                 sach.setTensach(txtTenSach.getText());
                 sach.setTentacgia(txtTacGia.getText());
                 sach.setNxb(txtNXB.getText());
                 sach.setTheloai(txtTheLoai.getText());
-                sach.setSoluong(txtSoluong.getText());
-                sach.setSoluongconlai(txtSoluong.getText());
+                sach.setSoluong((int) txtSoluong.getValue());
+                sach.setSoluongconlai((int) txtSoluong.getValue());
                 sach.setMavitri(txtMaViTri.getText());
                 sach.setGiabia(Integer.parseInt(txtGiabia.getText()));
                 SachDao dao = new SachDao();
@@ -239,9 +252,9 @@ public class ThemSachView extends javax.swing.JFrame {
         admin.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtSoluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongActionPerformed
+    private void txtGiabiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiabiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoluongActionPerformed
+    }//GEN-LAST:event_txtGiabiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,12 +310,13 @@ public class ThemSachView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClock;
+    private javax.swing.JLabel lblVNĐ;
     private javax.swing.JMenuItem menuExit;
     private javax.swing.JMenuItem menuLogout;
     private javax.swing.JTextField txtGiabia;
     private javax.swing.JTextField txtMaViTri;
     private javax.swing.JTextField txtNXB;
-    private javax.swing.JTextField txtSoluong;
+    private javax.swing.JSpinner txtSoluong;
     private javax.swing.JTextField txtTacGia;
     private javax.swing.JTextField txtTenSach;
     private javax.swing.JTextField txtTheLoai;

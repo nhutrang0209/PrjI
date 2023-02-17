@@ -53,8 +53,8 @@ public class LoginView extends javax.swing.JFrame {
         lblClock = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnQuenmk = new javax.swing.JButton();
         background = new javax.swing.JLabel();
+        btnQuenmk = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnExit = new javax.swing.JMenuItem();
@@ -130,6 +130,10 @@ public class LoginView extends javax.swing.JFrame {
         jLabel6.setText("Thư viện Tạ Quang Bửu");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
+        background.getAccessibleContext().setAccessibleDescription("");
+
         btnQuenmk.setText("Quên mật khẩu");
         btnQuenmk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,10 +141,6 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnQuenmk, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 120, 30));
-
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
-        background.getAccessibleContext().setAccessibleDescription("");
 
         jMenu1.setText("Hệ thống");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

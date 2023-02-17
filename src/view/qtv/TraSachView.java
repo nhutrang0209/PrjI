@@ -142,6 +142,7 @@ public class TraSachView extends javax.swing.JFrame {
         getContentPane().add(tableName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setEnabled(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         masach1Label.setText("Mã sách trả ");
@@ -174,20 +175,26 @@ public class TraSachView extends javax.swing.JFrame {
         });
         jPanel2.add(traSachBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 120, 40));
 
+        phatPane.setEditable(false);
         jScrollPane3.setViewportView(phatPane);
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 150, 30));
 
+        masachPane.setEditable(false);
         jScrollPane1.setViewportView(masachPane);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 12, 150, 30));
 
         jLabel2.setText("Tiền phạt sách hỏng");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        txtPhatHong.setEditable(false);
         jPanel2.add(txtPhatHong, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 150, 30));
 
         jLabel3.setText("Tổng tiền phạt");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        txtTongphat.setEditable(false);
         jPanel2.add(txtTongphat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 150, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 310, 310));
@@ -346,13 +353,25 @@ public class TraSachView extends javax.swing.JFrame {
     private void traSachBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_traSachBtnActionPerformed
          // TODO add your handling code here:
          if (current!=null){
-           int maphieu=current.getMaphieu();
-           TraSachDao.trasach(maphieu,Integer.parseInt(phatPane.getText()));
-           int option = JOptionPane.showConfirmDialog(null,"Xác nhận trả sách?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-    if (option == JOptionPane.YES_OPTION) {
-                   updateTable(current.getMadg());
-    }
-         }
+           int selectedRow = bangmuon.getSelectedRow();
+           int soluong=current.getSoluong();
+           if((int)hongSpinner.getValue()>=soluong) JOptionPane.showMessageDialog(this, "Số lượng sách hỏng không lớn hơn số lượng sách mượn");
+           else if((int)hongSpinner.getValue()<=0) JOptionPane.showMessageDialog(this, "Số lượng sách hỏng là số tự nhiên");
+           else {
+               int maphieu=current.getMaphieu();
+                TraSachDao.trasach(maphieu,Integer.parseInt(phatPane.getText()));
+                int option = JOptionPane.showConfirmDialog(null,"Xác nhận trả sách?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                        updateTable(current.getMadg());
+                        masachPane.setText(null);
+                        hongSpinner.setValue(0);
+                        phatPane.setText(null);
+                        txtPhatHong.setText(null);
+                        txtTongphat.setText(null);
+                 }
+           current = null;
+           }
+         }else JOptionPane.showMessageDialog(this, "Chưa chọn mã sách");
     }//GEN-LAST:event_traSachBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

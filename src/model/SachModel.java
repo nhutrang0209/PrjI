@@ -13,14 +13,14 @@ public class SachModel {
     private String tentacgia;
     private String nxb;
     private String theloai;
-    private String soluong;
-    private String soluongconlai;
+    private int soluong;
+    private int soluongconlai;
     private String mavitri;
     private int giabia;
     public SachModel() {
     }
 
-    public SachModel(String masach, String tensach, String tentacgia, String nxb, String theloai, String soluong, String soluongconlai, String mavitri) {
+    public SachModel(String masach, String tensach, String tentacgia, String nxb, String theloai, int soluong, int soluongconlai, String mavitri) {
         this.masach = masach;
         this.tensach = tensach;
         this.tentacgia = tentacgia;
@@ -73,19 +73,19 @@ public class SachModel {
         this.theloai = theloai;
     }
 
-    public String getSoluong() {
+    public int getSoluong() {
         return soluong;
     }
 
-    public void setSoluong(String soluong) {
+    public void setSoluong(int soluong) {
         this.soluong = soluong;
     }
 
-    public String getSoluongconlai() {
+    public int getSoluongconlai() {
         return soluongconlai;
     }
 
-    public void setSoluongconlai(String soluongconlai) {
+    public void setSoluongconlai(int soluongconlai) {
         this.soluongconlai = soluongconlai;
     }
 

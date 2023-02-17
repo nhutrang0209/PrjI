@@ -193,6 +193,32 @@ public class ThemDocGiaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void reset(){
+        txtEmail.setText(null);
+        txtCC.setText(null);
+        txtTendg.setText(null);
+        txtSodt.setText(null);
+        jDateChooser.setDate(null);
+    }
+    
+    private boolean checkCC(){
+        String st = txtCC.getText();
+        if (st.length()!=12) return false;
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
+    private boolean checkSdt(){
+        String st = txtSodt.getText();
+        if (st.length()!=10) return false;
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
             if (txtTendg.getText().trim().isEmpty()
                 || txtSodt.getText().trim().isEmpty()
@@ -200,8 +226,10 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 || txtCC.getText().trim().isEmpty()
                 || jDateChooser.getDate()==null) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
+            
+        }else if (!checkCC()) JOptionPane.showMessageDialog(rootPane, "Căn cước phải gồm 12 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
+         else if (!checkSdt()) JOptionPane.showMessageDialog(rootPane, "Số điện thoại phải gồm 10 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
+         else {
             try {
                 DocGiaModel dg = new DocGiaModel();
                 dg.setMK(txtCC.getText());
@@ -215,6 +243,7 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 if (dao.insert(dg)) {
                     JOptionPane.showMessageDialog(this, "Thêm mới độc giả thành công!");
                     loadDataToTable();
+                    reset();
                 } else {
                     JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
                 }

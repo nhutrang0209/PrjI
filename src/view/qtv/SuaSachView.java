@@ -73,13 +73,25 @@ public class SuaSachView extends javax.swing.JFrame {
         txtNXB.setText((String)tblSach.getValueAt(selectedRow[0],3));
         txtTheLoai.setText((String)tblSach.getValueAt(selectedRow[0],4));
         txtTacGia.setText((String)tblSach.getValueAt(selectedRow[0],2));
-        txtSoluong.setText((String)tblSach.getValueAt(selectedRow[0],5));
-        txtSoluongconlai.setText((String)tblSach.getValueAt(selectedRow[0],6));
+        txtSoluong.setValue((int)tblSach.getValueAt(selectedRow[0],5));
+        txtSoluongconlai.setValue((int)tblSach.getValueAt(selectedRow[0],6));
         txtMaViTri.setText((String)tblSach.getValueAt(selectedRow[0],7));
         txtGiabia.setText(Integer.toString((int) tblSach.getValueAt(selectedRow[0],8)));
         }
       }
     });
+    }
+    
+    private void reset(){
+        txtMaSach.setText(null);
+                    txtTenSach.setText(null);
+                    txtTacGia.setText(null);
+                    txtNXB.setText(null);
+                    txtTheLoai.setText(null);
+                    txtSoluong.setValue(0);
+                    txtSoluongconlai.setValue(0);
+                    txtMaViTri.setText(null);
+                    txtGiabia.setText(null);
     }
     
     private void loadDataToTable() {
@@ -113,8 +125,6 @@ public class SuaSachView extends javax.swing.JFrame {
         txtTacGia = new javax.swing.JTextField();
         txtNXB = new javax.swing.JTextField();
         txtTheLoai = new javax.swing.JTextField();
-        txtSoluong = new javax.swing.JTextField();
-        txtSoluongconlai = new javax.swing.JTextField();
         txtMaViTri = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -130,11 +140,14 @@ public class SuaSachView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         txtGiabia = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        txtSoluong = new javax.swing.JSpinner();
+        txtSoluongconlai = new javax.swing.JSpinner();
         btnChange = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -184,8 +197,6 @@ public class SuaSachView extends javax.swing.JFrame {
         jPanel1.add(txtTacGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 170, 30));
         jPanel1.add(txtNXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 220, 30));
         jPanel1.add(txtTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 220, 30));
-        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 170, 30));
-        jPanel1.add(txtSoluongconlai, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 170, 30));
         jPanel1.add(txtMaViTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 170, 30));
 
         jLabel2.setText("Thể loại (*)");
@@ -239,10 +250,15 @@ public class SuaSachView extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 51, 255));
         jLabel15.setText("(*) là các trường bắt buộc");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, -1));
-        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 220, 30));
+
+        jLabel17.setText("VNĐ");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
+        jPanel1.add(txtGiabia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 140, 30));
 
         jLabel16.setText("Giá bìa (*)");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 170, 30));
+        jPanel1.add(txtSoluongconlai, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 170, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 690, 230));
 
@@ -255,6 +271,14 @@ public class SuaSachView extends javax.swing.JFrame {
         });
         getContentPane().add(btnChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 170, 50));
 
+        btnBack.setText("< Quay lại");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 90, 30));
+
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delebook.png"))); // NOI18N
         btnDelete.setText("Xóa sách");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -263,14 +287,6 @@ public class SuaSachView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 170, 50));
-
-        btnBack.setText("< Quay lại");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 90, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -311,12 +327,29 @@ public class SuaSachView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblClockAncestorRemoved
 
+    private boolean checkGia(){
+        String st = txtGiabia.getText();
+        for (int i = 0; i<st.length();++i){
+            if (st.charAt(i)<'0'||st.charAt(i)>'9') return false;
+        }
+        return true;
+    }
+    
+    private boolean checkSoluong(){
+        int sl = (int) txtSoluong.getValue();
+        int slcl = (int) txtSoluongconlai.getValue();
+        if (sl<slcl) return false;
+        return true;
+    }
+    
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         if (txtTenSach.getText().trim().isEmpty()||txtTacGia.getText().trim().isEmpty()
                 ||txtNXB.getText().trim().isEmpty()||txtTheLoai.getText().trim().isEmpty()
-                ||txtSoluong.getText().trim().isEmpty()||txtSoluongconlai.getText().trim().isEmpty())
+                ||txtSoluong.getValue()==null||txtSoluongconlai.getValue()==null)
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
-        else{
+        else if (!checkGia()) JOptionPane.showMessageDialog(rootPane, "Giá bìa phải có giá trị là 1 số", "Warning", JOptionPane.WARNING_MESSAGE);
+        else if (!checkSoluong()) JOptionPane.showMessageDialog(rootPane, "Số lượng còn lại không được lớn hơn số lượng", "Warning", JOptionPane.WARNING_MESSAGE);
+        else {
             if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn "
                     + "cập nhật thông tin sách không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 try {
@@ -326,10 +359,10 @@ public class SuaSachView extends javax.swing.JFrame {
                 sach.setTentacgia(txtTacGia.getText());
                 sach.setNxb(txtNXB.getText());
                 sach.setTheloai(txtTheLoai.getText());
-                sach.setSoluong(txtSoluong.getText());
-                sach.setSoluongconlai(txtSoluongconlai.getText());
+                sach.setSoluong((int)txtSoluong.getValue());
+                sach.setSoluongconlai((int)txtSoluongconlai.getValue());
                 sach.setMavitri(txtMaViTri.getText());
-
+                sach.setGiabia(Integer.parseInt(txtGiabia.getText()));
                 SachDao dao = new SachDao();
             if (dao.update(sach)) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thông tin sách thành công!");
@@ -340,14 +373,7 @@ public class SuaSachView extends javax.swing.JFrame {
             } catch (Exception e) {
             e.printStackTrace();
             }
-            txtMaSach.setText(null);
-            txtTenSach.setText(null);
-            txtTacGia.setText(null);
-            txtNXB.setText(null);
-            txtTheLoai.setText(null);
-            txtSoluong.setText(null);
-            txtSoluongconlai.setText(null);
-            txtMaViTri.setText(null);
+            reset();
             }else return;
         }
     }//GEN-LAST:event_btnChangeActionPerformed
@@ -355,7 +381,7 @@ public class SuaSachView extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (txtTenSach.getText().trim().isEmpty()||txtTacGia.getText().trim().isEmpty()
                 ||txtNXB.getText().trim().isEmpty()||txtTheLoai.getText().trim().isEmpty()
-                ||txtSoluong.getText().trim().isEmpty()||txtSoluongconlai.getText().trim().isEmpty())
+                ||txtSoluong.getValue()==null||txtSoluongconlai.getValue()==null)
             JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn sách cần xóa", "Warning", JOptionPane.WARNING_MESSAGE);
         else{
             if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa sách này không?", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
@@ -368,8 +394,8 @@ public class SuaSachView extends javax.swing.JFrame {
                 sach.setTentacgia(txtTacGia.getText());
                 sach.setNxb(txtNXB.getText());
                 sach.setTheloai(txtTheLoai.getText());
-                sach.setSoluong(txtSoluong.getText());
-                sach.setSoluongconlai(txtSoluongconlai.getText());
+                sach.setSoluong((int)txtSoluong.getValue());
+                sach.setSoluongconlai((int)txtSoluong.getValue());
                 sach.setMavitri(txtMaViTri.getText());
 
                 SachDao dao = new SachDao();
@@ -377,6 +403,8 @@ public class SuaSachView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
                   //  btnNewActionPerformed(evt);
                     loadDataToTable();
+                    reset();
+         
                 } else {
                     JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!");
                 }
@@ -439,6 +467,7 @@ public class SuaSachView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -459,8 +488,8 @@ public class SuaSachView extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtMaViTri;
     private javax.swing.JTextField txtNXB;
-    private javax.swing.JTextField txtSoluong;
-    private javax.swing.JTextField txtSoluongconlai;
+    private javax.swing.JSpinner txtSoluong;
+    private javax.swing.JSpinner txtSoluongconlai;
     private javax.swing.JTextField txtTacGia;
     private javax.swing.JTextField txtTenSach;
     private javax.swing.JTextField txtTheLoai;

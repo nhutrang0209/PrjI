@@ -48,6 +48,12 @@ public class TraSachView extends javax.swing.JFrame {
         bangmuon.getColumnModel().getColumn(4).setPreferredWidth(100);
         bangmuon.getColumnModel().getColumn(5).setPreferredWidth(100);
         bangmuon.getColumnModel().getColumn(6).setPreferredWidth(115);
+        initClock();
+    }
+    
+    private void initClock() {
+        database.Clock th = new database.Clock(lblClock);
+        th.start();
     }
 
     /**
@@ -83,6 +89,7 @@ public class TraSachView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         lblVuilong = new javax.swing.JLabel();
+        lblClock = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -214,6 +221,21 @@ public class TraSachView extends javax.swing.JFrame {
         lblVuilong.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lblVuilong.setText("Nhấp để chọn phiếu sách muốn trả");
         getContentPane().add(lblVuilong, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+
+        lblClock.setBackground(new java.awt.Color(204, 255, 204));
+        lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblClock.setText("AM - PM");
+        lblClock.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblClockAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                lblClockAncestorRemoved(evt);
+            }
+        });
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -384,6 +406,14 @@ public class TraSachView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menuExitActionPerformed
 
+    private void lblClockAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblClockAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblClockAncestorAdded
+
+    private void lblClockAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblClockAncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblClockAncestorRemoved
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +447,7 @@ public class TraSachView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblCambotrong;
+    private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblVuilong;
     private javax.swing.JLabel masach1Label;
     private javax.swing.JTextPane masachPane;

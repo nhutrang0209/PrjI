@@ -172,7 +172,7 @@ public class QuanLyMuonTraView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Danh sách phiếu mượn của độc giả");

@@ -136,4 +136,49 @@ public class DocGiaDao {
             return null;}
         
     }
+     public static boolean checkEmail(String email){
+        String sql=     "SELECT MADG FROM docgia WHERE EMAIL= ?";
+        try{
+             ConnectDB cn=new ConnectDB();
+                Connection conn=(Connection) cn.getConnection();
+                PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+                ps.setString(1, email);
+                return ps.executeQuery().next();
+                
+        }
+        catch(Exception e){
+            
+        }
+        return false;
+    }
+    public static boolean checkSDT(String sdt){
+        String sql=     "SELECT MADG FROM docgia WHERE SODT= ?";
+        try{
+             ConnectDB cn=new ConnectDB();
+                Connection conn=(Connection) cn.getConnection();
+                PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+                ps.setString(1, sdt);
+                return ps.executeQuery().next();
+                
+        }
+        catch(Exception e){
+            
+        }
+        return false;
+    }
+    public static boolean checkCCCD(String cccd){
+        String sql=     "SELECT MADG FROM docgia WHERE CCCD= ?";
+        try{
+             ConnectDB cn=new ConnectDB();
+                Connection conn=(Connection) cn.getConnection();
+                PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+                ps.setString(1, cccd);
+                return ps.executeQuery().next();
+                
+        }
+        catch(Exception e){
+            
+        }
+        return false;
+    }
 }

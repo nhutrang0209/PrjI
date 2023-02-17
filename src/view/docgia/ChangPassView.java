@@ -144,7 +144,7 @@ public class ChangPassView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Mật khẩu cũ không chính xác");
        }
        else if (txtNewPass.getText().equals(txtOldPass.getText())){
-            JOptionPane.showMessageDialog(this, "Mật khẩu mới ko được trùng mật khẩu cũ");
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới không được trùng mật khẩu cũ");
        }
        else if(!txtNewPass.getText().equals(txtConfirmNewPass.getText())){
             JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu mới không khớp");

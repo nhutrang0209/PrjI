@@ -157,7 +157,7 @@ public class ThemSachView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -223,6 +223,10 @@ public class ThemSachView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ các trường", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (!checkGia()) JOptionPane.showMessageDialog(rootPane, "Giá bìa phải có giá trị là 1 số", "Warning", JOptionPane.WARNING_MESSAGE);
             else{
+            if(SachDao.checkSach(txtTenSach.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Tên sách đã tồn tại", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{   
             try {
                 SachModel sach = new SachModel();
                 sach.setTensach(txtTenSach.getText());
@@ -244,6 +248,7 @@ public class ThemSachView extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
+            }
     }//GEN-LAST:event_btnInsertBookActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

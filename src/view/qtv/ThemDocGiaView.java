@@ -114,7 +114,7 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Thêm độc giả mới");
@@ -230,6 +230,18 @@ public class ThemDocGiaView extends javax.swing.JFrame {
         }else if (!checkCC()) JOptionPane.showMessageDialog(rootPane, "Căn cước phải gồm 12 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
          else if (!checkSdt()) JOptionPane.showMessageDialog(rootPane, "Số điện thoại phải gồm 10 chữ số từ 0 - 9", "Warning", JOptionPane.WARNING_MESSAGE);
          else {
+             if(DocGiaDao.checkEmail(txtEmail.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Email đã tồn tại", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            if(DocGiaDao.checkSDT(txtSodt.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Số điện thoại đã tồn tại", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                if(DocGiaDao.checkCCCD(txtCC.getText())){
+                    JOptionPane.showMessageDialog(rootPane, "Căn cước công dân đã tồn tại", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+                else
             try {
                 DocGiaModel dg = new DocGiaModel();
                 dg.setMK(txtCC.getText());
@@ -251,7 +263,8 @@ public class ThemDocGiaView extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-        
+        }
+             }
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

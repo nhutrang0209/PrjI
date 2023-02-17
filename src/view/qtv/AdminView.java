@@ -72,7 +72,7 @@ public class AdminView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, -1, 30));
 
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/in4people.png"))); // NOI18N

@@ -190,5 +190,19 @@ public class SachDao {
 
     }
     
-    
+    public static boolean checkSach(String tensach){
+        String sql=     "SELECT MASACH FROM sach WHERE TENSACH= ?";
+        try{
+             ConnectDB cn=new ConnectDB();
+                Connection conn=(Connection) cn.getConnection();
+                PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+                ps.setString(1, tensach);
+                return ps.executeQuery().next();
+                
+        }
+        catch(Exception e){
+            
+        }
+        return false;
+    }
 }

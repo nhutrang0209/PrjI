@@ -120,7 +120,7 @@ public class LoginView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Đại học Bách Khoa Hà Nội");

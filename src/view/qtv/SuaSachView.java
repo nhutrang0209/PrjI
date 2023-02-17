@@ -174,7 +174,7 @@ public class SuaSachView extends javax.swing.JFrame {
                 lblClockAncestorRemoved(evt);
             }
         });
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 20, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         tblSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

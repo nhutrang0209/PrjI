@@ -162,7 +162,7 @@ public class TimKiemView extends javax.swing.JFrame {
         lblClock.setBackground(new java.awt.Color(204, 255, 204));
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblClock.setText("AM - PM");
-        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, 30));
+        getContentPane().add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, 30));
 
         lblCompulsory.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
         lblCompulsory.setForeground(new java.awt.Color(51, 102, 255));
